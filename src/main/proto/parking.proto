@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package parking;
+
+// The parking service definition.
+service ParkingService {
+  // Request the current availability of parking spots.
+  rpc CheckAvailability(CheckAvailabilityRequest) returns (CheckAvailabilityResponse);
+
+  // Reserve a parking spot.
+  rpc ReserveSpot(ReserveSpotRequest) returns (ReserveSpotResponse);
+}
+
+// Request message for checking parking availability.
+message CheckAvailabilityRequest {
+  string locationId = 1; // Identifier for the parking location
+}
+
+// Response message for checking parking availability.
+message CheckAvailabilityResponse {
+  int32 availableSpots = 1; // Number of available spots at the location
+  bool success = 2; // Whether the operation was successful
+  string message = 3; // Additional message (e.g., error or status info)
+}
+
+// Request message for reserving a parking spot.
+message ReserveSpotRequest {
+  string locationId = 1; // Identifier for the parking location
+  string userId = 2; // Identifier for the user who is reserving the spot
+}
+
+// Response message for reserving a parking spot.
+message ReserveSpotResponse {
+  bool success = 1; // Whether the reservation was successful
+  string message = 2; // Additional message (e.g., confirmation or error info)
+}
