@@ -1,3 +1,3 @@
 # gRPC-Smart-transport-system
-This is the CA of Distributed Systems (HDCSDEV_INT)
-Test for SSH keys test for gpg
+This is the CA of Distributed Systems (HDCSDEV_INT)  
+For x86 platform only

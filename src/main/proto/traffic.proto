@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package traffic;
+
+// The greeter service definition.
+service TrafficLightService {
+  // Sends a command to change the traffic light state
+  rpc ChangeLightState(ChangeLightRequest) returns (ChangeLightResponse);
+
+  // Retrieves the current state of the traffic light
+  rpc GetCurrentState(Empty) returns (TrafficLightState);
+}
+
+// The request message containing the desired state of the traffic light.
+message ChangeLightRequest {
+  TrafficLightState state = 1;
+}
+
+// The response message confirming the change of the traffic light.
+message ChangeLightResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+// The traffic light state can be either RED or GREEN.
+message TrafficLightState {
+  enum State {
+    RED = 0;
+    GREEN = 1;
+  }
+  State current_state = 1;
+}
+
+// Empty message for requests that do not require parameters.
+message Empty {}
