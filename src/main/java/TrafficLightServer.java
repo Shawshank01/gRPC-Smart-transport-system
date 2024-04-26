@@ -11,6 +11,7 @@ import java.io.IOException;
 
 public class TrafficLightServer {
     private Server server;
+    private static TrafficLightState.State currentState = TrafficLightState.State.RED; // Initial state
 
     private void start() throws IOException {
         int port = 50051;
@@ -41,11 +42,11 @@ public class TrafficLightServer {
     static class TrafficLightServiceImpl extends TrafficLightServiceGrpc.TrafficLightServiceImplBase {
         @Override
         public void changeLightState(ChangeLightRequest req, StreamObserver<ChangeLightResponse> responseObserver) {
-            TrafficLightState state = req.getState();
-            System.out.println("Changing light to: " + state.getCurrentState());
+            currentState = req.getState().getCurrentState(); // Update current state
+            System.out.println("Changing light to: " + currentState);
             ChangeLightResponse response = ChangeLightResponse.newBuilder()
                     .setSuccess(true)
-                    .setMessage("Traffic light changed to: " + state.getCurrentState())
+                    .setMessage("Traffic light changed to: " + currentState)
                     .build();
             responseObserver.onNext(response);
             responseObserver.onCompleted();
@@ -54,7 +55,7 @@ public class TrafficLightServer {
         @Override
         public void getCurrentState(Empty request, StreamObserver<TrafficLightState> responseObserver) {
             TrafficLightState state = TrafficLightState.newBuilder()
-                    .setCurrentState(TrafficLightState.State.RED) // Default or track the current state
+                    .setCurrentState(currentState) // Return the current state
                     .build();
             responseObserver.onNext(state);
             responseObserver.onCompleted();
