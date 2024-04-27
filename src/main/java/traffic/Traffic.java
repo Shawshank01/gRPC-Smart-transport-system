@@ -14,40 +14,48 @@ public final class Traffic {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
-  public interface ChangeLightRequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:traffic.ChangeLightRequest)
+  public interface TrafficCommandOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:traffic.TrafficCommand)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.traffic.TrafficLightState state = 1;</code>
+     * <code>string intersectionId = 1;</code>
      */
-    boolean hasState();
+    java.lang.String getIntersectionId();
     /**
-     * <code>.traffic.TrafficLightState state = 1;</code>
+     * <code>string intersectionId = 1;</code>
      */
-    traffic.Traffic.TrafficLightState getState();
+    com.google.protobuf.ByteString
+        getIntersectionIdBytes();
+
     /**
-     * <code>.traffic.TrafficLightState state = 1;</code>
+     * <code>.traffic.TrafficCommand.Command command = 2;</code>
      */
-    traffic.Traffic.TrafficLightStateOrBuilder getStateOrBuilder();
+    int getCommandValue();
+    /**
+     * <code>.traffic.TrafficCommand.Command command = 2;</code>
+     */
+    traffic.Traffic.TrafficCommand.Command getCommand();
   }
   /**
    * <pre>
-   * The request message containing the desired state of the traffic light.
+   * Command to change traffic light state
    * </pre>
    *
-   * Protobuf type {@code traffic.ChangeLightRequest}
+   * Protobuf type {@code traffic.TrafficCommand}
    */
-  public  static final class ChangeLightRequest extends
+  public  static final class TrafficCommand extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:traffic.ChangeLightRequest)
-      ChangeLightRequestOrBuilder {
+      // @@protoc_insertion_point(message_implements:traffic.TrafficCommand)
+      TrafficCommandOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use ChangeLightRequest.newBuilder() to construct.
-    private ChangeLightRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use TrafficCommand.newBuilder() to construct.
+    private TrafficCommand(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private ChangeLightRequest() {
+    private TrafficCommand() {
+      intersectionId_ = "";
+      command_ = 0;
     }
 
     @java.lang.Override
@@ -55,7 +63,7 @@ public final class Traffic {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private ChangeLightRequest(
+    private TrafficCommand(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -75,633 +83,15 @@ public final class Traffic {
               done = true;
               break;
             case 10: {
-              traffic.Traffic.TrafficLightState.Builder subBuilder = null;
-              if (state_ != null) {
-                subBuilder = state_.toBuilder();
-              }
-              state_ = input.readMessage(traffic.Traffic.TrafficLightState.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(state_);
-                state_ = subBuilder.buildPartial();
-              }
-
-              break;
-            }
-            default: {
-              if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return traffic.Traffic.internal_static_traffic_ChangeLightRequest_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return traffic.Traffic.internal_static_traffic_ChangeLightRequest_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              traffic.Traffic.ChangeLightRequest.class, traffic.Traffic.ChangeLightRequest.Builder.class);
-    }
-
-    public static final int STATE_FIELD_NUMBER = 1;
-    private traffic.Traffic.TrafficLightState state_;
-    /**
-     * <code>.traffic.TrafficLightState state = 1;</code>
-     */
-    public boolean hasState() {
-      return state_ != null;
-    }
-    /**
-     * <code>.traffic.TrafficLightState state = 1;</code>
-     */
-    public traffic.Traffic.TrafficLightState getState() {
-      return state_ == null ? traffic.Traffic.TrafficLightState.getDefaultInstance() : state_;
-    }
-    /**
-     * <code>.traffic.TrafficLightState state = 1;</code>
-     */
-    public traffic.Traffic.TrafficLightStateOrBuilder getStateOrBuilder() {
-      return getState();
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      if (state_ != null) {
-        output.writeMessage(1, getState());
-      }
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (state_ != null) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getState());
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof traffic.Traffic.ChangeLightRequest)) {
-        return super.equals(obj);
-      }
-      traffic.Traffic.ChangeLightRequest other = (traffic.Traffic.ChangeLightRequest) obj;
-
-      boolean result = true;
-      result = result && (hasState() == other.hasState());
-      if (hasState()) {
-        result = result && getState()
-            .equals(other.getState());
-      }
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      if (hasState()) {
-        hash = (37 * hash) + STATE_FIELD_NUMBER;
-        hash = (53 * hash) + getState().hashCode();
-      }
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static traffic.Traffic.ChangeLightRequest parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static traffic.Traffic.ChangeLightRequest parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static traffic.Traffic.ChangeLightRequest parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static traffic.Traffic.ChangeLightRequest parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static traffic.Traffic.ChangeLightRequest parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static traffic.Traffic.ChangeLightRequest parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static traffic.Traffic.ChangeLightRequest parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static traffic.Traffic.ChangeLightRequest parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static traffic.Traffic.ChangeLightRequest parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static traffic.Traffic.ChangeLightRequest parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static traffic.Traffic.ChangeLightRequest parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static traffic.Traffic.ChangeLightRequest parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(traffic.Traffic.ChangeLightRequest prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * <pre>
-     * The request message containing the desired state of the traffic light.
-     * </pre>
-     *
-     * Protobuf type {@code traffic.ChangeLightRequest}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:traffic.ChangeLightRequest)
-        traffic.Traffic.ChangeLightRequestOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return traffic.Traffic.internal_static_traffic_ChangeLightRequest_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return traffic.Traffic.internal_static_traffic_ChangeLightRequest_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                traffic.Traffic.ChangeLightRequest.class, traffic.Traffic.ChangeLightRequest.Builder.class);
-      }
-
-      // Construct using traffic.Traffic.ChangeLightRequest.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        if (stateBuilder_ == null) {
-          state_ = null;
-        } else {
-          state_ = null;
-          stateBuilder_ = null;
-        }
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return traffic.Traffic.internal_static_traffic_ChangeLightRequest_descriptor;
-      }
-
-      @java.lang.Override
-      public traffic.Traffic.ChangeLightRequest getDefaultInstanceForType() {
-        return traffic.Traffic.ChangeLightRequest.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public traffic.Traffic.ChangeLightRequest build() {
-        traffic.Traffic.ChangeLightRequest result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public traffic.Traffic.ChangeLightRequest buildPartial() {
-        traffic.Traffic.ChangeLightRequest result = new traffic.Traffic.ChangeLightRequest(this);
-        if (stateBuilder_ == null) {
-          result.state_ = state_;
-        } else {
-          result.state_ = stateBuilder_.build();
-        }
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof traffic.Traffic.ChangeLightRequest) {
-          return mergeFrom((traffic.Traffic.ChangeLightRequest)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(traffic.Traffic.ChangeLightRequest other) {
-        if (other == traffic.Traffic.ChangeLightRequest.getDefaultInstance()) return this;
-        if (other.hasState()) {
-          mergeState(other.getState());
-        }
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        traffic.Traffic.ChangeLightRequest parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (traffic.Traffic.ChangeLightRequest) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-
-      private traffic.Traffic.TrafficLightState state_ = null;
-      private com.google.protobuf.SingleFieldBuilderV3<
-          traffic.Traffic.TrafficLightState, traffic.Traffic.TrafficLightState.Builder, traffic.Traffic.TrafficLightStateOrBuilder> stateBuilder_;
-      /**
-       * <code>.traffic.TrafficLightState state = 1;</code>
-       */
-      public boolean hasState() {
-        return stateBuilder_ != null || state_ != null;
-      }
-      /**
-       * <code>.traffic.TrafficLightState state = 1;</code>
-       */
-      public traffic.Traffic.TrafficLightState getState() {
-        if (stateBuilder_ == null) {
-          return state_ == null ? traffic.Traffic.TrafficLightState.getDefaultInstance() : state_;
-        } else {
-          return stateBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>.traffic.TrafficLightState state = 1;</code>
-       */
-      public Builder setState(traffic.Traffic.TrafficLightState value) {
-        if (stateBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          state_ = value;
-          onChanged();
-        } else {
-          stateBuilder_.setMessage(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.traffic.TrafficLightState state = 1;</code>
-       */
-      public Builder setState(
-          traffic.Traffic.TrafficLightState.Builder builderForValue) {
-        if (stateBuilder_ == null) {
-          state_ = builderForValue.build();
-          onChanged();
-        } else {
-          stateBuilder_.setMessage(builderForValue.build());
-        }
-
-        return this;
-      }
-      /**
-       * <code>.traffic.TrafficLightState state = 1;</code>
-       */
-      public Builder mergeState(traffic.Traffic.TrafficLightState value) {
-        if (stateBuilder_ == null) {
-          if (state_ != null) {
-            state_ =
-              traffic.Traffic.TrafficLightState.newBuilder(state_).mergeFrom(value).buildPartial();
-          } else {
-            state_ = value;
-          }
-          onChanged();
-        } else {
-          stateBuilder_.mergeFrom(value);
-        }
-
-        return this;
-      }
-      /**
-       * <code>.traffic.TrafficLightState state = 1;</code>
-       */
-      public Builder clearState() {
-        if (stateBuilder_ == null) {
-          state_ = null;
-          onChanged();
-        } else {
-          state_ = null;
-          stateBuilder_ = null;
-        }
-
-        return this;
-      }
-      /**
-       * <code>.traffic.TrafficLightState state = 1;</code>
-       */
-      public traffic.Traffic.TrafficLightState.Builder getStateBuilder() {
-        
-        onChanged();
-        return getStateFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>.traffic.TrafficLightState state = 1;</code>
-       */
-      public traffic.Traffic.TrafficLightStateOrBuilder getStateOrBuilder() {
-        if (stateBuilder_ != null) {
-          return stateBuilder_.getMessageOrBuilder();
-        } else {
-          return state_ == null ?
-              traffic.Traffic.TrafficLightState.getDefaultInstance() : state_;
-        }
-      }
-      /**
-       * <code>.traffic.TrafficLightState state = 1;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-          traffic.Traffic.TrafficLightState, traffic.Traffic.TrafficLightState.Builder, traffic.Traffic.TrafficLightStateOrBuilder> 
-          getStateFieldBuilder() {
-        if (stateBuilder_ == null) {
-          stateBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              traffic.Traffic.TrafficLightState, traffic.Traffic.TrafficLightState.Builder, traffic.Traffic.TrafficLightStateOrBuilder>(
-                  getState(),
-                  getParentForChildren(),
-                  isClean());
-          state_ = null;
-        }
-        return stateBuilder_;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:traffic.ChangeLightRequest)
-    }
-
-    // @@protoc_insertion_point(class_scope:traffic.ChangeLightRequest)
-    private static final traffic.Traffic.ChangeLightRequest DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new traffic.Traffic.ChangeLightRequest();
-    }
-
-    public static traffic.Traffic.ChangeLightRequest getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<ChangeLightRequest>
-        PARSER = new com.google.protobuf.AbstractParser<ChangeLightRequest>() {
-      @java.lang.Override
-      public ChangeLightRequest parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ChangeLightRequest(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<ChangeLightRequest> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<ChangeLightRequest> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public traffic.Traffic.ChangeLightRequest getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface ChangeLightResponseOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:traffic.ChangeLightResponse)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>bool success = 1;</code>
-     */
-    boolean getSuccess();
-
-    /**
-     * <code>string message = 2;</code>
-     */
-    java.lang.String getMessage();
-    /**
-     * <code>string message = 2;</code>
-     */
-    com.google.protobuf.ByteString
-        getMessageBytes();
-  }
-  /**
-   * <pre>
-   * The response message confirming the change of the traffic light.
-   * </pre>
-   *
-   * Protobuf type {@code traffic.ChangeLightResponse}
-   */
-  public  static final class ChangeLightResponse extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:traffic.ChangeLightResponse)
-      ChangeLightResponseOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use ChangeLightResponse.newBuilder() to construct.
-    private ChangeLightResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private ChangeLightResponse() {
-      success_ = false;
-      message_ = "";
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private ChangeLightResponse(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            case 8: {
-
-              success_ = input.readBool();
-              break;
-            }
-            case 18: {
               java.lang.String s = input.readStringRequireUtf8();
 
-              message_ = s;
+              intersectionId_ = s;
+              break;
+            }
+            case 16: {
+              int rawValue = input.readEnum();
+
+              command_ = rawValue;
               break;
             }
             default: {
@@ -725,58 +115,164 @@ public final class Traffic {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return traffic.Traffic.internal_static_traffic_ChangeLightResponse_descriptor;
+      return traffic.Traffic.internal_static_traffic_TrafficCommand_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return traffic.Traffic.internal_static_traffic_ChangeLightResponse_fieldAccessorTable
+      return traffic.Traffic.internal_static_traffic_TrafficCommand_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              traffic.Traffic.ChangeLightResponse.class, traffic.Traffic.ChangeLightResponse.Builder.class);
+              traffic.Traffic.TrafficCommand.class, traffic.Traffic.TrafficCommand.Builder.class);
     }
 
-    public static final int SUCCESS_FIELD_NUMBER = 1;
-    private boolean success_;
     /**
-     * <code>bool success = 1;</code>
+     * Protobuf enum {@code traffic.TrafficCommand.Command}
      */
-    public boolean getSuccess() {
-      return success_;
+    public enum Command
+        implements com.google.protobuf.ProtocolMessageEnum {
+      /**
+       * <code>TURN_RED = 0;</code>
+       */
+      TURN_RED(0),
+      /**
+       * <code>TURN_GREEN = 1;</code>
+       */
+      TURN_GREEN(1),
+      UNRECOGNIZED(-1),
+      ;
+
+      /**
+       * <code>TURN_RED = 0;</code>
+       */
+      public static final int TURN_RED_VALUE = 0;
+      /**
+       * <code>TURN_GREEN = 1;</code>
+       */
+      public static final int TURN_GREEN_VALUE = 1;
+
+
+      public final int getNumber() {
+        if (this == UNRECOGNIZED) {
+          throw new java.lang.IllegalArgumentException(
+              "Can't get the number of an unknown enum value.");
+        }
+        return value;
+      }
+
+      /**
+       * @deprecated Use {@link #forNumber(int)} instead.
+       */
+      @java.lang.Deprecated
+      public static Command valueOf(int value) {
+        return forNumber(value);
+      }
+
+      public static Command forNumber(int value) {
+        switch (value) {
+          case 0: return TURN_RED;
+          case 1: return TURN_GREEN;
+          default: return null;
+        }
+      }
+
+      public static com.google.protobuf.Internal.EnumLiteMap<Command>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static final com.google.protobuf.Internal.EnumLiteMap<
+          Command> internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<Command>() {
+              public Command findValueByNumber(int number) {
+                return Command.forNumber(number);
+              }
+            };
+
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(ordinal());
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return traffic.Traffic.TrafficCommand.getDescriptor().getEnumTypes().get(0);
+      }
+
+      private static final Command[] VALUES = values();
+
+      public static Command valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        if (desc.getIndex() == -1) {
+          return UNRECOGNIZED;
+        }
+        return VALUES[desc.getIndex()];
+      }
+
+      private final int value;
+
+      private Command(int value) {
+        this.value = value;
+      }
+
+      // @@protoc_insertion_point(enum_scope:traffic.TrafficCommand.Command)
     }
 
-    public static final int MESSAGE_FIELD_NUMBER = 2;
-    private volatile java.lang.Object message_;
+    public static final int INTERSECTIONID_FIELD_NUMBER = 1;
+    private volatile java.lang.Object intersectionId_;
     /**
-     * <code>string message = 2;</code>
+     * <code>string intersectionId = 1;</code>
      */
-    public java.lang.String getMessage() {
-      java.lang.Object ref = message_;
+    public java.lang.String getIntersectionId() {
+      java.lang.Object ref = intersectionId_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        message_ = s;
+        intersectionId_ = s;
         return s;
       }
     }
     /**
-     * <code>string message = 2;</code>
+     * <code>string intersectionId = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getMessageBytes() {
-      java.lang.Object ref = message_;
+        getIntersectionIdBytes() {
+      java.lang.Object ref = intersectionId_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        message_ = b;
+        intersectionId_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
+    }
+
+    public static final int COMMAND_FIELD_NUMBER = 2;
+    private int command_;
+    /**
+     * <code>.traffic.TrafficCommand.Command command = 2;</code>
+     */
+    public int getCommandValue() {
+      return command_;
+    }
+    /**
+     * <code>.traffic.TrafficCommand.Command command = 2;</code>
+     */
+    public traffic.Traffic.TrafficCommand.Command getCommand() {
+      @SuppressWarnings("deprecation")
+      traffic.Traffic.TrafficCommand.Command result = traffic.Traffic.TrafficCommand.Command.valueOf(command_);
+      return result == null ? traffic.Traffic.TrafficCommand.Command.UNRECOGNIZED : result;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -793,11 +289,11 @@ public final class Traffic {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (success_ != false) {
-        output.writeBool(1, success_);
+      if (!getIntersectionIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, intersectionId_);
       }
-      if (!getMessageBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, message_);
+      if (command_ != traffic.Traffic.TrafficCommand.Command.TURN_RED.getNumber()) {
+        output.writeEnum(2, command_);
       }
       unknownFields.writeTo(output);
     }
@@ -808,12 +304,12 @@ public final class Traffic {
       if (size != -1) return size;
 
       size = 0;
-      if (success_ != false) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(1, success_);
+      if (!getIntersectionIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, intersectionId_);
       }
-      if (!getMessageBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, message_);
+      if (command_ != traffic.Traffic.TrafficCommand.Command.TURN_RED.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(2, command_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -825,16 +321,15 @@ public final class Traffic {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof traffic.Traffic.ChangeLightResponse)) {
+      if (!(obj instanceof traffic.Traffic.TrafficCommand)) {
         return super.equals(obj);
       }
-      traffic.Traffic.ChangeLightResponse other = (traffic.Traffic.ChangeLightResponse) obj;
+      traffic.Traffic.TrafficCommand other = (traffic.Traffic.TrafficCommand) obj;
 
       boolean result = true;
-      result = result && (getSuccess()
-          == other.getSuccess());
-      result = result && getMessage()
-          .equals(other.getMessage());
+      result = result && getIntersectionId()
+          .equals(other.getIntersectionId());
+      result = result && command_ == other.command_;
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -846,79 +341,78 @@ public final class Traffic {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + SUCCESS_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getSuccess());
-      hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
-      hash = (53 * hash) + getMessage().hashCode();
+      hash = (37 * hash) + INTERSECTIONID_FIELD_NUMBER;
+      hash = (53 * hash) + getIntersectionId().hashCode();
+      hash = (37 * hash) + COMMAND_FIELD_NUMBER;
+      hash = (53 * hash) + command_;
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static traffic.Traffic.ChangeLightResponse parseFrom(
+    public static traffic.Traffic.TrafficCommand parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static traffic.Traffic.ChangeLightResponse parseFrom(
+    public static traffic.Traffic.TrafficCommand parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static traffic.Traffic.ChangeLightResponse parseFrom(
+    public static traffic.Traffic.TrafficCommand parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static traffic.Traffic.ChangeLightResponse parseFrom(
+    public static traffic.Traffic.TrafficCommand parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static traffic.Traffic.ChangeLightResponse parseFrom(byte[] data)
+    public static traffic.Traffic.TrafficCommand parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static traffic.Traffic.ChangeLightResponse parseFrom(
+    public static traffic.Traffic.TrafficCommand parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static traffic.Traffic.ChangeLightResponse parseFrom(java.io.InputStream input)
+    public static traffic.Traffic.TrafficCommand parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static traffic.Traffic.ChangeLightResponse parseFrom(
+    public static traffic.Traffic.TrafficCommand parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static traffic.Traffic.ChangeLightResponse parseDelimitedFrom(java.io.InputStream input)
+    public static traffic.Traffic.TrafficCommand parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static traffic.Traffic.ChangeLightResponse parseDelimitedFrom(
+    public static traffic.Traffic.TrafficCommand parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static traffic.Traffic.ChangeLightResponse parseFrom(
+    public static traffic.Traffic.TrafficCommand parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static traffic.Traffic.ChangeLightResponse parseFrom(
+    public static traffic.Traffic.TrafficCommand parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -931,7 +425,7 @@ public final class Traffic {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(traffic.Traffic.ChangeLightResponse prototype) {
+    public static Builder newBuilder(traffic.Traffic.TrafficCommand prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -948,29 +442,29 @@ public final class Traffic {
     }
     /**
      * <pre>
-     * The response message confirming the change of the traffic light.
+     * Command to change traffic light state
      * </pre>
      *
-     * Protobuf type {@code traffic.ChangeLightResponse}
+     * Protobuf type {@code traffic.TrafficCommand}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:traffic.ChangeLightResponse)
-        traffic.Traffic.ChangeLightResponseOrBuilder {
+        // @@protoc_insertion_point(builder_implements:traffic.TrafficCommand)
+        traffic.Traffic.TrafficCommandOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return traffic.Traffic.internal_static_traffic_ChangeLightResponse_descriptor;
+        return traffic.Traffic.internal_static_traffic_TrafficCommand_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return traffic.Traffic.internal_static_traffic_ChangeLightResponse_fieldAccessorTable
+        return traffic.Traffic.internal_static_traffic_TrafficCommand_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                traffic.Traffic.ChangeLightResponse.class, traffic.Traffic.ChangeLightResponse.Builder.class);
+                traffic.Traffic.TrafficCommand.class, traffic.Traffic.TrafficCommand.Builder.class);
       }
 
-      // Construct using traffic.Traffic.ChangeLightResponse.newBuilder()
+      // Construct using traffic.Traffic.TrafficCommand.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -988,9 +482,9 @@ public final class Traffic {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        success_ = false;
+        intersectionId_ = "";
 
-        message_ = "";
+        command_ = 0;
 
         return this;
       }
@@ -998,17 +492,17 @@ public final class Traffic {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return traffic.Traffic.internal_static_traffic_ChangeLightResponse_descriptor;
+        return traffic.Traffic.internal_static_traffic_TrafficCommand_descriptor;
       }
 
       @java.lang.Override
-      public traffic.Traffic.ChangeLightResponse getDefaultInstanceForType() {
-        return traffic.Traffic.ChangeLightResponse.getDefaultInstance();
+      public traffic.Traffic.TrafficCommand getDefaultInstanceForType() {
+        return traffic.Traffic.TrafficCommand.getDefaultInstance();
       }
 
       @java.lang.Override
-      public traffic.Traffic.ChangeLightResponse build() {
-        traffic.Traffic.ChangeLightResponse result = buildPartial();
+      public traffic.Traffic.TrafficCommand build() {
+        traffic.Traffic.TrafficCommand result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -1016,10 +510,10 @@ public final class Traffic {
       }
 
       @java.lang.Override
-      public traffic.Traffic.ChangeLightResponse buildPartial() {
-        traffic.Traffic.ChangeLightResponse result = new traffic.Traffic.ChangeLightResponse(this);
-        result.success_ = success_;
-        result.message_ = message_;
+      public traffic.Traffic.TrafficCommand buildPartial() {
+        traffic.Traffic.TrafficCommand result = new traffic.Traffic.TrafficCommand(this);
+        result.intersectionId_ = intersectionId_;
+        result.command_ = command_;
         onBuilt();
         return result;
       }
@@ -1058,22 +552,22 @@ public final class Traffic {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof traffic.Traffic.ChangeLightResponse) {
-          return mergeFrom((traffic.Traffic.ChangeLightResponse)other);
+        if (other instanceof traffic.Traffic.TrafficCommand) {
+          return mergeFrom((traffic.Traffic.TrafficCommand)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(traffic.Traffic.ChangeLightResponse other) {
-        if (other == traffic.Traffic.ChangeLightResponse.getDefaultInstance()) return this;
-        if (other.getSuccess() != false) {
-          setSuccess(other.getSuccess());
-        }
-        if (!other.getMessage().isEmpty()) {
-          message_ = other.message_;
+      public Builder mergeFrom(traffic.Traffic.TrafficCommand other) {
+        if (other == traffic.Traffic.TrafficCommand.getDefaultInstance()) return this;
+        if (!other.getIntersectionId().isEmpty()) {
+          intersectionId_ = other.intersectionId_;
           onChanged();
+        }
+        if (other.command_ != 0) {
+          setCommandValue(other.getCommandValue());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -1090,11 +584,11 @@ public final class Traffic {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        traffic.Traffic.ChangeLightResponse parsedMessage = null;
+        traffic.Traffic.TrafficCommand parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (traffic.Traffic.ChangeLightResponse) e.getUnfinishedMessage();
+          parsedMessage = (traffic.Traffic.TrafficCommand) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -1104,97 +598,116 @@ public final class Traffic {
         return this;
       }
 
-      private boolean success_ ;
+      private java.lang.Object intersectionId_ = "";
       /**
-       * <code>bool success = 1;</code>
+       * <code>string intersectionId = 1;</code>
        */
-      public boolean getSuccess() {
-        return success_;
-      }
-      /**
-       * <code>bool success = 1;</code>
-       */
-      public Builder setSuccess(boolean value) {
-        
-        success_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>bool success = 1;</code>
-       */
-      public Builder clearSuccess() {
-        
-        success_ = false;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object message_ = "";
-      /**
-       * <code>string message = 2;</code>
-       */
-      public java.lang.String getMessage() {
-        java.lang.Object ref = message_;
+      public java.lang.String getIntersectionId() {
+        java.lang.Object ref = intersectionId_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          message_ = s;
+          intersectionId_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>string message = 2;</code>
+       * <code>string intersectionId = 1;</code>
        */
       public com.google.protobuf.ByteString
-          getMessageBytes() {
-        java.lang.Object ref = message_;
+          getIntersectionIdBytes() {
+        java.lang.Object ref = intersectionId_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          message_ = b;
+          intersectionId_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>string message = 2;</code>
+       * <code>string intersectionId = 1;</code>
        */
-      public Builder setMessage(
+      public Builder setIntersectionId(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   
-        message_ = value;
+        intersectionId_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>string message = 2;</code>
+       * <code>string intersectionId = 1;</code>
        */
-      public Builder clearMessage() {
+      public Builder clearIntersectionId() {
         
-        message_ = getDefaultInstance().getMessage();
+        intersectionId_ = getDefaultInstance().getIntersectionId();
         onChanged();
         return this;
       }
       /**
-       * <code>string message = 2;</code>
+       * <code>string intersectionId = 1;</code>
        */
-      public Builder setMessageBytes(
+      public Builder setIntersectionIdBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
         
-        message_ = value;
+        intersectionId_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int command_ = 0;
+      /**
+       * <code>.traffic.TrafficCommand.Command command = 2;</code>
+       */
+      public int getCommandValue() {
+        return command_;
+      }
+      /**
+       * <code>.traffic.TrafficCommand.Command command = 2;</code>
+       */
+      public Builder setCommandValue(int value) {
+        command_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.traffic.TrafficCommand.Command command = 2;</code>
+       */
+      public traffic.Traffic.TrafficCommand.Command getCommand() {
+        @SuppressWarnings("deprecation")
+        traffic.Traffic.TrafficCommand.Command result = traffic.Traffic.TrafficCommand.Command.valueOf(command_);
+        return result == null ? traffic.Traffic.TrafficCommand.Command.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.traffic.TrafficCommand.Command command = 2;</code>
+       */
+      public Builder setCommand(traffic.Traffic.TrafficCommand.Command value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        command_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.traffic.TrafficCommand.Command command = 2;</code>
+       */
+      public Builder clearCommand() {
+        
+        command_ = 0;
         onChanged();
         return this;
       }
@@ -1211,76 +724,87 @@ public final class Traffic {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:traffic.ChangeLightResponse)
+      // @@protoc_insertion_point(builder_scope:traffic.TrafficCommand)
     }
 
-    // @@protoc_insertion_point(class_scope:traffic.ChangeLightResponse)
-    private static final traffic.Traffic.ChangeLightResponse DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:traffic.TrafficCommand)
+    private static final traffic.Traffic.TrafficCommand DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new traffic.Traffic.ChangeLightResponse();
+      DEFAULT_INSTANCE = new traffic.Traffic.TrafficCommand();
     }
 
-    public static traffic.Traffic.ChangeLightResponse getDefaultInstance() {
+    public static traffic.Traffic.TrafficCommand getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<ChangeLightResponse>
-        PARSER = new com.google.protobuf.AbstractParser<ChangeLightResponse>() {
+    private static final com.google.protobuf.Parser<TrafficCommand>
+        PARSER = new com.google.protobuf.AbstractParser<TrafficCommand>() {
       @java.lang.Override
-      public ChangeLightResponse parsePartialFrom(
+      public TrafficCommand parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ChangeLightResponse(input, extensionRegistry);
+        return new TrafficCommand(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<ChangeLightResponse> parser() {
+    public static com.google.protobuf.Parser<TrafficCommand> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<ChangeLightResponse> getParserForType() {
+    public com.google.protobuf.Parser<TrafficCommand> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public traffic.Traffic.ChangeLightResponse getDefaultInstanceForType() {
+    public traffic.Traffic.TrafficCommand getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
-  public interface TrafficLightStateOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:traffic.TrafficLightState)
+  public interface TrafficStateOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:traffic.TrafficState)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.traffic.TrafficLightState.State current_state = 1;</code>
+     * <code>string intersectionId = 1;</code>
+     */
+    java.lang.String getIntersectionId();
+    /**
+     * <code>string intersectionId = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getIntersectionIdBytes();
+
+    /**
+     * <code>.traffic.TrafficState.State currentState = 2;</code>
      */
     int getCurrentStateValue();
     /**
-     * <code>.traffic.TrafficLightState.State current_state = 1;</code>
+     * <code>.traffic.TrafficState.State currentState = 2;</code>
      */
-    traffic.Traffic.TrafficLightState.State getCurrentState();
+    traffic.Traffic.TrafficState.State getCurrentState();
   }
   /**
    * <pre>
-   * The traffic light state can be either RED or GREEN.
+   * Current state of the traffic light
    * </pre>
    *
-   * Protobuf type {@code traffic.TrafficLightState}
+   * Protobuf type {@code traffic.TrafficState}
    */
-  public  static final class TrafficLightState extends
+  public  static final class TrafficState extends
       com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:traffic.TrafficLightState)
-      TrafficLightStateOrBuilder {
+      // @@protoc_insertion_point(message_implements:traffic.TrafficState)
+      TrafficStateOrBuilder {
   private static final long serialVersionUID = 0L;
-    // Use TrafficLightState.newBuilder() to construct.
-    private TrafficLightState(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use TrafficState.newBuilder() to construct.
+    private TrafficState(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
     }
-    private TrafficLightState() {
+    private TrafficState() {
+      intersectionId_ = "";
       currentState_ = 0;
     }
 
@@ -1289,7 +813,7 @@ public final class Traffic {
     getUnknownFields() {
       return this.unknownFields;
     }
-    private TrafficLightState(
+    private TrafficState(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -1308,7 +832,13 @@ public final class Traffic {
             case 0:
               done = true;
               break;
-            case 8: {
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              intersectionId_ = s;
+              break;
+            }
+            case 16: {
               int rawValue = input.readEnum();
 
               currentState_ = rawValue;
@@ -1335,19 +865,19 @@ public final class Traffic {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return traffic.Traffic.internal_static_traffic_TrafficLightState_descriptor;
+      return traffic.Traffic.internal_static_traffic_TrafficState_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return traffic.Traffic.internal_static_traffic_TrafficLightState_fieldAccessorTable
+      return traffic.Traffic.internal_static_traffic_TrafficState_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              traffic.Traffic.TrafficLightState.class, traffic.Traffic.TrafficLightState.Builder.class);
+              traffic.Traffic.TrafficState.class, traffic.Traffic.TrafficState.Builder.class);
     }
 
     /**
-     * Protobuf enum {@code traffic.TrafficLightState.State}
+     * Protobuf enum {@code traffic.TrafficState.State}
      */
     public enum State
         implements com.google.protobuf.ProtocolMessageEnum {
@@ -1418,7 +948,7 @@ public final class Traffic {
       }
       public static final com.google.protobuf.Descriptors.EnumDescriptor
           getDescriptor() {
-        return traffic.Traffic.TrafficLightState.getDescriptor().getEnumTypes().get(0);
+        return traffic.Traffic.TrafficState.getDescriptor().getEnumTypes().get(0);
       }
 
       private static final State[] VALUES = values();
@@ -1441,24 +971,58 @@ public final class Traffic {
         this.value = value;
       }
 
-      // @@protoc_insertion_point(enum_scope:traffic.TrafficLightState.State)
+      // @@protoc_insertion_point(enum_scope:traffic.TrafficState.State)
     }
 
-    public static final int CURRENT_STATE_FIELD_NUMBER = 1;
+    public static final int INTERSECTIONID_FIELD_NUMBER = 1;
+    private volatile java.lang.Object intersectionId_;
+    /**
+     * <code>string intersectionId = 1;</code>
+     */
+    public java.lang.String getIntersectionId() {
+      java.lang.Object ref = intersectionId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        intersectionId_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string intersectionId = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getIntersectionIdBytes() {
+      java.lang.Object ref = intersectionId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        intersectionId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int CURRENTSTATE_FIELD_NUMBER = 2;
     private int currentState_;
     /**
-     * <code>.traffic.TrafficLightState.State current_state = 1;</code>
+     * <code>.traffic.TrafficState.State currentState = 2;</code>
      */
     public int getCurrentStateValue() {
       return currentState_;
     }
     /**
-     * <code>.traffic.TrafficLightState.State current_state = 1;</code>
+     * <code>.traffic.TrafficState.State currentState = 2;</code>
      */
-    public traffic.Traffic.TrafficLightState.State getCurrentState() {
+    public traffic.Traffic.TrafficState.State getCurrentState() {
       @SuppressWarnings("deprecation")
-      traffic.Traffic.TrafficLightState.State result = traffic.Traffic.TrafficLightState.State.valueOf(currentState_);
-      return result == null ? traffic.Traffic.TrafficLightState.State.UNRECOGNIZED : result;
+      traffic.Traffic.TrafficState.State result = traffic.Traffic.TrafficState.State.valueOf(currentState_);
+      return result == null ? traffic.Traffic.TrafficState.State.UNRECOGNIZED : result;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -1475,8 +1039,11 @@ public final class Traffic {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (currentState_ != traffic.Traffic.TrafficLightState.State.RED.getNumber()) {
-        output.writeEnum(1, currentState_);
+      if (!getIntersectionIdBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, intersectionId_);
+      }
+      if (currentState_ != traffic.Traffic.TrafficState.State.RED.getNumber()) {
+        output.writeEnum(2, currentState_);
       }
       unknownFields.writeTo(output);
     }
@@ -1487,9 +1054,12 @@ public final class Traffic {
       if (size != -1) return size;
 
       size = 0;
-      if (currentState_ != traffic.Traffic.TrafficLightState.State.RED.getNumber()) {
+      if (!getIntersectionIdBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, intersectionId_);
+      }
+      if (currentState_ != traffic.Traffic.TrafficState.State.RED.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(1, currentState_);
+          .computeEnumSize(2, currentState_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1501,12 +1071,14 @@ public final class Traffic {
       if (obj == this) {
        return true;
       }
-      if (!(obj instanceof traffic.Traffic.TrafficLightState)) {
+      if (!(obj instanceof traffic.Traffic.TrafficState)) {
         return super.equals(obj);
       }
-      traffic.Traffic.TrafficLightState other = (traffic.Traffic.TrafficLightState) obj;
+      traffic.Traffic.TrafficState other = (traffic.Traffic.TrafficState) obj;
 
       boolean result = true;
+      result = result && getIntersectionId()
+          .equals(other.getIntersectionId());
       result = result && currentState_ == other.currentState_;
       result = result && unknownFields.equals(other.unknownFields);
       return result;
@@ -1519,76 +1091,78 @@ public final class Traffic {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + CURRENT_STATE_FIELD_NUMBER;
+      hash = (37 * hash) + INTERSECTIONID_FIELD_NUMBER;
+      hash = (53 * hash) + getIntersectionId().hashCode();
+      hash = (37 * hash) + CURRENTSTATE_FIELD_NUMBER;
       hash = (53 * hash) + currentState_;
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
     }
 
-    public static traffic.Traffic.TrafficLightState parseFrom(
+    public static traffic.Traffic.TrafficState parseFrom(
         java.nio.ByteBuffer data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static traffic.Traffic.TrafficLightState parseFrom(
+    public static traffic.Traffic.TrafficState parseFrom(
         java.nio.ByteBuffer data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static traffic.Traffic.TrafficLightState parseFrom(
+    public static traffic.Traffic.TrafficState parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static traffic.Traffic.TrafficLightState parseFrom(
+    public static traffic.Traffic.TrafficState parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static traffic.Traffic.TrafficLightState parseFrom(byte[] data)
+    public static traffic.Traffic.TrafficState parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
-    public static traffic.Traffic.TrafficLightState parseFrom(
+    public static traffic.Traffic.TrafficState parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
-    public static traffic.Traffic.TrafficLightState parseFrom(java.io.InputStream input)
+    public static traffic.Traffic.TrafficState parseFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static traffic.Traffic.TrafficLightState parseFrom(
+    public static traffic.Traffic.TrafficState parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
-    public static traffic.Traffic.TrafficLightState parseDelimitedFrom(java.io.InputStream input)
+    public static traffic.Traffic.TrafficState parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input);
     }
-    public static traffic.Traffic.TrafficLightState parseDelimitedFrom(
+    public static traffic.Traffic.TrafficState parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
-    public static traffic.Traffic.TrafficLightState parseFrom(
+    public static traffic.Traffic.TrafficState parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
           .parseWithIOException(PARSER, input);
     }
-    public static traffic.Traffic.TrafficLightState parseFrom(
+    public static traffic.Traffic.TrafficState parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -1601,7 +1175,7 @@ public final class Traffic {
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
     }
-    public static Builder newBuilder(traffic.Traffic.TrafficLightState prototype) {
+    public static Builder newBuilder(traffic.Traffic.TrafficState prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
     @java.lang.Override
@@ -1618,29 +1192,29 @@ public final class Traffic {
     }
     /**
      * <pre>
-     * The traffic light state can be either RED or GREEN.
+     * Current state of the traffic light
      * </pre>
      *
-     * Protobuf type {@code traffic.TrafficLightState}
+     * Protobuf type {@code traffic.TrafficState}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:traffic.TrafficLightState)
-        traffic.Traffic.TrafficLightStateOrBuilder {
+        // @@protoc_insertion_point(builder_implements:traffic.TrafficState)
+        traffic.Traffic.TrafficStateOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return traffic.Traffic.internal_static_traffic_TrafficLightState_descriptor;
+        return traffic.Traffic.internal_static_traffic_TrafficState_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return traffic.Traffic.internal_static_traffic_TrafficLightState_fieldAccessorTable
+        return traffic.Traffic.internal_static_traffic_TrafficState_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
-                traffic.Traffic.TrafficLightState.class, traffic.Traffic.TrafficLightState.Builder.class);
+                traffic.Traffic.TrafficState.class, traffic.Traffic.TrafficState.Builder.class);
       }
 
-      // Construct using traffic.Traffic.TrafficLightState.newBuilder()
+      // Construct using traffic.Traffic.TrafficState.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -1658,6 +1232,8 @@ public final class Traffic {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        intersectionId_ = "";
+
         currentState_ = 0;
 
         return this;
@@ -1666,17 +1242,17 @@ public final class Traffic {
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return traffic.Traffic.internal_static_traffic_TrafficLightState_descriptor;
+        return traffic.Traffic.internal_static_traffic_TrafficState_descriptor;
       }
 
       @java.lang.Override
-      public traffic.Traffic.TrafficLightState getDefaultInstanceForType() {
-        return traffic.Traffic.TrafficLightState.getDefaultInstance();
+      public traffic.Traffic.TrafficState getDefaultInstanceForType() {
+        return traffic.Traffic.TrafficState.getDefaultInstance();
       }
 
       @java.lang.Override
-      public traffic.Traffic.TrafficLightState build() {
-        traffic.Traffic.TrafficLightState result = buildPartial();
+      public traffic.Traffic.TrafficState build() {
+        traffic.Traffic.TrafficState result = buildPartial();
         if (!result.isInitialized()) {
           throw newUninitializedMessageException(result);
         }
@@ -1684,8 +1260,9 @@ public final class Traffic {
       }
 
       @java.lang.Override
-      public traffic.Traffic.TrafficLightState buildPartial() {
-        traffic.Traffic.TrafficLightState result = new traffic.Traffic.TrafficLightState(this);
+      public traffic.Traffic.TrafficState buildPartial() {
+        traffic.Traffic.TrafficState result = new traffic.Traffic.TrafficState(this);
+        result.intersectionId_ = intersectionId_;
         result.currentState_ = currentState_;
         onBuilt();
         return result;
@@ -1725,16 +1302,20 @@ public final class Traffic {
       }
       @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof traffic.Traffic.TrafficLightState) {
-          return mergeFrom((traffic.Traffic.TrafficLightState)other);
+        if (other instanceof traffic.Traffic.TrafficState) {
+          return mergeFrom((traffic.Traffic.TrafficState)other);
         } else {
           super.mergeFrom(other);
           return this;
         }
       }
 
-      public Builder mergeFrom(traffic.Traffic.TrafficLightState other) {
-        if (other == traffic.Traffic.TrafficLightState.getDefaultInstance()) return this;
+      public Builder mergeFrom(traffic.Traffic.TrafficState other) {
+        if (other == traffic.Traffic.TrafficState.getDefaultInstance()) return this;
+        if (!other.getIntersectionId().isEmpty()) {
+          intersectionId_ = other.intersectionId_;
+          onChanged();
+        }
         if (other.currentState_ != 0) {
           setCurrentStateValue(other.getCurrentStateValue());
         }
@@ -1753,11 +1334,11 @@ public final class Traffic {
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        traffic.Traffic.TrafficLightState parsedMessage = null;
+        traffic.Traffic.TrafficState parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (traffic.Traffic.TrafficLightState) e.getUnfinishedMessage();
+          parsedMessage = (traffic.Traffic.TrafficState) e.getUnfinishedMessage();
           throw e.unwrapIOException();
         } finally {
           if (parsedMessage != null) {
@@ -1767,15 +1348,84 @@ public final class Traffic {
         return this;
       }
 
+      private java.lang.Object intersectionId_ = "";
+      /**
+       * <code>string intersectionId = 1;</code>
+       */
+      public java.lang.String getIntersectionId() {
+        java.lang.Object ref = intersectionId_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          intersectionId_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string intersectionId = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getIntersectionIdBytes() {
+        java.lang.Object ref = intersectionId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          intersectionId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string intersectionId = 1;</code>
+       */
+      public Builder setIntersectionId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        intersectionId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string intersectionId = 1;</code>
+       */
+      public Builder clearIntersectionId() {
+        
+        intersectionId_ = getDefaultInstance().getIntersectionId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string intersectionId = 1;</code>
+       */
+      public Builder setIntersectionIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        intersectionId_ = value;
+        onChanged();
+        return this;
+      }
+
       private int currentState_ = 0;
       /**
-       * <code>.traffic.TrafficLightState.State current_state = 1;</code>
+       * <code>.traffic.TrafficState.State currentState = 2;</code>
        */
       public int getCurrentStateValue() {
         return currentState_;
       }
       /**
-       * <code>.traffic.TrafficLightState.State current_state = 1;</code>
+       * <code>.traffic.TrafficState.State currentState = 2;</code>
        */
       public Builder setCurrentStateValue(int value) {
         currentState_ = value;
@@ -1783,17 +1433,17 @@ public final class Traffic {
         return this;
       }
       /**
-       * <code>.traffic.TrafficLightState.State current_state = 1;</code>
+       * <code>.traffic.TrafficState.State currentState = 2;</code>
        */
-      public traffic.Traffic.TrafficLightState.State getCurrentState() {
+      public traffic.Traffic.TrafficState.State getCurrentState() {
         @SuppressWarnings("deprecation")
-        traffic.Traffic.TrafficLightState.State result = traffic.Traffic.TrafficLightState.State.valueOf(currentState_);
-        return result == null ? traffic.Traffic.TrafficLightState.State.UNRECOGNIZED : result;
+        traffic.Traffic.TrafficState.State result = traffic.Traffic.TrafficState.State.valueOf(currentState_);
+        return result == null ? traffic.Traffic.TrafficState.State.UNRECOGNIZED : result;
       }
       /**
-       * <code>.traffic.TrafficLightState.State current_state = 1;</code>
+       * <code>.traffic.TrafficState.State currentState = 2;</code>
        */
-      public Builder setCurrentState(traffic.Traffic.TrafficLightState.State value) {
+      public Builder setCurrentState(traffic.Traffic.TrafficState.State value) {
         if (value == null) {
           throw new NullPointerException();
         }
@@ -1803,7 +1453,7 @@ public final class Traffic {
         return this;
       }
       /**
-       * <code>.traffic.TrafficLightState.State current_state = 1;</code>
+       * <code>.traffic.TrafficState.State currentState = 2;</code>
        */
       public Builder clearCurrentState() {
         
@@ -1824,486 +1474,56 @@ public final class Traffic {
       }
 
 
-      // @@protoc_insertion_point(builder_scope:traffic.TrafficLightState)
+      // @@protoc_insertion_point(builder_scope:traffic.TrafficState)
     }
 
-    // @@protoc_insertion_point(class_scope:traffic.TrafficLightState)
-    private static final traffic.Traffic.TrafficLightState DEFAULT_INSTANCE;
+    // @@protoc_insertion_point(class_scope:traffic.TrafficState)
+    private static final traffic.Traffic.TrafficState DEFAULT_INSTANCE;
     static {
-      DEFAULT_INSTANCE = new traffic.Traffic.TrafficLightState();
+      DEFAULT_INSTANCE = new traffic.Traffic.TrafficState();
     }
 
-    public static traffic.Traffic.TrafficLightState getDefaultInstance() {
+    public static traffic.Traffic.TrafficState getDefaultInstance() {
       return DEFAULT_INSTANCE;
     }
 
-    private static final com.google.protobuf.Parser<TrafficLightState>
-        PARSER = new com.google.protobuf.AbstractParser<TrafficLightState>() {
+    private static final com.google.protobuf.Parser<TrafficState>
+        PARSER = new com.google.protobuf.AbstractParser<TrafficState>() {
       @java.lang.Override
-      public TrafficLightState parsePartialFrom(
+      public TrafficState parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
-        return new TrafficLightState(input, extensionRegistry);
+        return new TrafficState(input, extensionRegistry);
       }
     };
 
-    public static com.google.protobuf.Parser<TrafficLightState> parser() {
+    public static com.google.protobuf.Parser<TrafficState> parser() {
       return PARSER;
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<TrafficLightState> getParserForType() {
+    public com.google.protobuf.Parser<TrafficState> getParserForType() {
       return PARSER;
     }
 
     @java.lang.Override
-    public traffic.Traffic.TrafficLightState getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
-  public interface EmptyOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:traffic.Empty)
-      com.google.protobuf.MessageOrBuilder {
-  }
-  /**
-   * <pre>
-   * Empty message for requests that do not require parameters.
-   * </pre>
-   *
-   * Protobuf type {@code traffic.Empty}
-   */
-  public  static final class Empty extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:traffic.Empty)
-      EmptyOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use Empty.newBuilder() to construct.
-    private Empty(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private Empty() {
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private Empty(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return traffic.Traffic.internal_static_traffic_Empty_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return traffic.Traffic.internal_static_traffic_Empty_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              traffic.Traffic.Empty.class, traffic.Traffic.Empty.Builder.class);
-    }
-
-    private byte memoizedIsInitialized = -1;
-    @java.lang.Override
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      unknownFields.writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof traffic.Traffic.Empty)) {
-        return super.equals(obj);
-      }
-      traffic.Traffic.Empty other = (traffic.Traffic.Empty) obj;
-
-      boolean result = true;
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static traffic.Traffic.Empty parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static traffic.Traffic.Empty parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static traffic.Traffic.Empty parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static traffic.Traffic.Empty parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static traffic.Traffic.Empty parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static traffic.Traffic.Empty parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static traffic.Traffic.Empty parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static traffic.Traffic.Empty parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static traffic.Traffic.Empty parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static traffic.Traffic.Empty parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static traffic.Traffic.Empty parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static traffic.Traffic.Empty parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(traffic.Traffic.Empty prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    @java.lang.Override
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * <pre>
-     * Empty message for requests that do not require parameters.
-     * </pre>
-     *
-     * Protobuf type {@code traffic.Empty}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:traffic.Empty)
-        traffic.Traffic.EmptyOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return traffic.Traffic.internal_static_traffic_Empty_descriptor;
-      }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return traffic.Traffic.internal_static_traffic_Empty_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                traffic.Traffic.Empty.class, traffic.Traffic.Empty.Builder.class);
-      }
-
-      // Construct using traffic.Traffic.Empty.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      @java.lang.Override
-      public Builder clear() {
-        super.clear();
-        return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return traffic.Traffic.internal_static_traffic_Empty_descriptor;
-      }
-
-      @java.lang.Override
-      public traffic.Traffic.Empty getDefaultInstanceForType() {
-        return traffic.Traffic.Empty.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public traffic.Traffic.Empty build() {
-        traffic.Traffic.Empty result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      @java.lang.Override
-      public traffic.Traffic.Empty buildPartial() {
-        traffic.Traffic.Empty result = new traffic.Traffic.Empty(this);
-        onBuilt();
-        return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      @java.lang.Override
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      @java.lang.Override
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      @java.lang.Override
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      @java.lang.Override
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      @java.lang.Override
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof traffic.Traffic.Empty) {
-          return mergeFrom((traffic.Traffic.Empty)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(traffic.Traffic.Empty other) {
-        if (other == traffic.Traffic.Empty.getDefaultInstance()) return this;
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        traffic.Traffic.Empty parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (traffic.Traffic.Empty) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      @java.lang.Override
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
-      }
-
-      @java.lang.Override
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:traffic.Empty)
-    }
-
-    // @@protoc_insertion_point(class_scope:traffic.Empty)
-    private static final traffic.Traffic.Empty DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new traffic.Traffic.Empty();
-    }
-
-    public static traffic.Traffic.Empty getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<Empty>
-        PARSER = new com.google.protobuf.AbstractParser<Empty>() {
-      @java.lang.Override
-      public Empty parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new Empty(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<Empty> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<Empty> getParserForType() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public traffic.Traffic.Empty getDefaultInstanceForType() {
+    public traffic.Traffic.TrafficState getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_traffic_ChangeLightRequest_descriptor;
+    internal_static_traffic_TrafficCommand_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_traffic_ChangeLightRequest_fieldAccessorTable;
+      internal_static_traffic_TrafficCommand_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_traffic_ChangeLightResponse_descriptor;
+    internal_static_traffic_TrafficState_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_traffic_ChangeLightResponse_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_traffic_TrafficLightState_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_traffic_TrafficLightState_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_traffic_Empty_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_traffic_Empty_fieldAccessorTable;
+      internal_static_traffic_TrafficState_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -2313,17 +1533,16 @@ public final class Traffic {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\rtraffic.proto\022\007traffic\"?\n\022ChangeLightR" +
-      "equest\022)\n\005state\030\001 \001(\0132\032.traffic.TrafficL" +
-      "ightState\"7\n\023ChangeLightResponse\022\017\n\007succ" +
-      "ess\030\001 \001(\010\022\017\n\007message\030\002 \001(\t\"i\n\021TrafficLig" +
-      "htState\0227\n\rcurrent_state\030\001 \001(\0162 .traffic" +
-      ".TrafficLightState.State\"\033\n\005State\022\007\n\003RED" +
-      "\020\000\022\t\n\005GREEN\020\001\"\007\n\005Empty2\243\001\n\023TrafficLightS" +
-      "ervice\022M\n\020ChangeLightState\022\033.traffic.Cha" +
-      "ngeLightRequest\032\034.traffic.ChangeLightRes" +
-      "ponse\022=\n\017GetCurrentState\022\016.traffic.Empty" +
-      "\032\032.traffic.TrafficLightStateb\006proto3"
+      "\n\rtraffic.proto\022\007traffic\"\203\001\n\016TrafficComm" +
+      "and\022\026\n\016intersectionId\030\001 \001(\t\0220\n\007command\030\002" +
+      " \001(\0162\037.traffic.TrafficCommand.Command\"\'\n" +
+      "\007Command\022\014\n\010TURN_RED\020\000\022\016\n\nTURN_GREEN\020\001\"v" +
+      "\n\014TrafficState\022\026\n\016intersectionId\030\001 \001(\t\0221" +
+      "\n\014currentState\030\002 \001(\0162\033.traffic.TrafficSt" +
+      "ate.State\"\033\n\005State\022\007\n\003RED\020\000\022\t\n\005GREEN\020\0012Z" +
+      "\n\023TrafficLightService\022C\n\rManageTraffic\022\027" +
+      ".traffic.TrafficCommand\032\025.traffic.Traffi" +
+      "cState(\0010\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -2337,30 +1556,18 @@ public final class Traffic {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
-    internal_static_traffic_ChangeLightRequest_descriptor =
+    internal_static_traffic_TrafficCommand_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_traffic_ChangeLightRequest_fieldAccessorTable = new
+    internal_static_traffic_TrafficCommand_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_traffic_ChangeLightRequest_descriptor,
-        new java.lang.String[] { "State", });
-    internal_static_traffic_ChangeLightResponse_descriptor =
+        internal_static_traffic_TrafficCommand_descriptor,
+        new java.lang.String[] { "IntersectionId", "Command", });
+    internal_static_traffic_TrafficState_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_traffic_ChangeLightResponse_fieldAccessorTable = new
+    internal_static_traffic_TrafficState_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_traffic_ChangeLightResponse_descriptor,
-        new java.lang.String[] { "Success", "Message", });
-    internal_static_traffic_TrafficLightState_descriptor =
-      getDescriptor().getMessageTypes().get(2);
-    internal_static_traffic_TrafficLightState_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_traffic_TrafficLightState_descriptor,
-        new java.lang.String[] { "CurrentState", });
-    internal_static_traffic_Empty_descriptor =
-      getDescriptor().getMessageTypes().get(3);
-    internal_static_traffic_Empty_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_traffic_Empty_descriptor,
-        new java.lang.String[] { });
+        internal_static_traffic_TrafficState_descriptor,
+        new java.lang.String[] { "IntersectionId", "CurrentState", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

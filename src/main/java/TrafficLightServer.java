@@ -1,17 +1,13 @@
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
-import traffic.Traffic.TrafficLightState;
-import traffic.Traffic.ChangeLightRequest;
-import traffic.Traffic.ChangeLightResponse;
-import traffic.Traffic.Empty;
 import traffic.TrafficLightServiceGrpc;
-
+import traffic.Traffic.TrafficCommand;
+import traffic.Traffic.TrafficState;
 import java.io.IOException;
 
 public class TrafficLightServer {
     private Server server;
-    private static TrafficLightState.State currentState = TrafficLightState.State.RED; // Initial state
 
     private void start() throws IOException {
         int port = 50051;
@@ -41,24 +37,29 @@ public class TrafficLightServer {
 
     static class TrafficLightServiceImpl extends TrafficLightServiceGrpc.TrafficLightServiceImplBase {
         @Override
-        public void changeLightState(ChangeLightRequest req, StreamObserver<ChangeLightResponse> responseObserver) {
-            currentState = req.getState().getCurrentState(); // Update current state
-            System.out.println("Changing light to: " + currentState);
-            ChangeLightResponse response = ChangeLightResponse.newBuilder()
-                    .setSuccess(true)
-                    .setMessage("Traffic light changed to: " + currentState)
-                    .build();
-            responseObserver.onNext(response);
-            responseObserver.onCompleted();
-        }
+        public StreamObserver<TrafficCommand> manageTraffic(StreamObserver<TrafficState> responseObserver) {
+            return new StreamObserver<TrafficCommand>() {
+                @Override
+                public void onNext(TrafficCommand command) {
+                    // Handle each command
+                    TrafficState.State newState = command.getCommand() == TrafficCommand.Command.TURN_RED ? TrafficState.State.RED : TrafficState.State.GREEN;
+                    TrafficState state = TrafficState.newBuilder()
+                            .setIntersectionId(command.getIntersectionId())
+                            .setCurrentState(newState)
+                            .build();
+                    responseObserver.onNext(state);
+                }
 
-        @Override
-        public void getCurrentState(Empty request, StreamObserver<TrafficLightState> responseObserver) {
-            TrafficLightState state = TrafficLightState.newBuilder()
-                    .setCurrentState(currentState) // Return the current state
-                    .build();
-            responseObserver.onNext(state);
-            responseObserver.onCompleted();
+                @Override
+                public void onError(Throwable t) {
+                    System.err.println("Error in manageTraffic: " + t.getMessage());
+                }
+
+                @Override
+                public void onCompleted() {
+                    responseObserver.onCompleted();
+                }
+            };
         }
     }
 

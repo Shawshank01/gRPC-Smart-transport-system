@@ -3,9 +3,6 @@ package traffic;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 
 /**
- * <pre>
- * The greeter service definition.
- * </pre>
  */
 @javax.annotation.Generated(
     value = "by gRPC proto compiler (version 1.61.1)",
@@ -18,66 +15,35 @@ public final class TrafficLightServiceGrpc {
   public static final java.lang.String SERVICE_NAME = "traffic.TrafficLightService";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<traffic.Traffic.ChangeLightRequest,
-      traffic.Traffic.ChangeLightResponse> getChangeLightStateMethod;
+  private static volatile io.grpc.MethodDescriptor<traffic.Traffic.TrafficCommand,
+      traffic.Traffic.TrafficState> getManageTrafficMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "ChangeLightState",
-      requestType = traffic.Traffic.ChangeLightRequest.class,
-      responseType = traffic.Traffic.ChangeLightResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<traffic.Traffic.ChangeLightRequest,
-      traffic.Traffic.ChangeLightResponse> getChangeLightStateMethod() {
-    io.grpc.MethodDescriptor<traffic.Traffic.ChangeLightRequest, traffic.Traffic.ChangeLightResponse> getChangeLightStateMethod;
-    if ((getChangeLightStateMethod = TrafficLightServiceGrpc.getChangeLightStateMethod) == null) {
+      fullMethodName = SERVICE_NAME + '/' + "ManageTraffic",
+      requestType = traffic.Traffic.TrafficCommand.class,
+      responseType = traffic.Traffic.TrafficState.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
+  public static io.grpc.MethodDescriptor<traffic.Traffic.TrafficCommand,
+      traffic.Traffic.TrafficState> getManageTrafficMethod() {
+    io.grpc.MethodDescriptor<traffic.Traffic.TrafficCommand, traffic.Traffic.TrafficState> getManageTrafficMethod;
+    if ((getManageTrafficMethod = TrafficLightServiceGrpc.getManageTrafficMethod) == null) {
       synchronized (TrafficLightServiceGrpc.class) {
-        if ((getChangeLightStateMethod = TrafficLightServiceGrpc.getChangeLightStateMethod) == null) {
-          TrafficLightServiceGrpc.getChangeLightStateMethod = getChangeLightStateMethod =
-              io.grpc.MethodDescriptor.<traffic.Traffic.ChangeLightRequest, traffic.Traffic.ChangeLightResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "ChangeLightState"))
+        if ((getManageTrafficMethod = TrafficLightServiceGrpc.getManageTrafficMethod) == null) {
+          TrafficLightServiceGrpc.getManageTrafficMethod = getManageTrafficMethod =
+              io.grpc.MethodDescriptor.<traffic.Traffic.TrafficCommand, traffic.Traffic.TrafficState>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "ManageTraffic"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  traffic.Traffic.ChangeLightRequest.getDefaultInstance()))
+                  traffic.Traffic.TrafficCommand.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  traffic.Traffic.ChangeLightResponse.getDefaultInstance()))
-              .setSchemaDescriptor(new TrafficLightServiceMethodDescriptorSupplier("ChangeLightState"))
+                  traffic.Traffic.TrafficState.getDefaultInstance()))
+              .setSchemaDescriptor(new TrafficLightServiceMethodDescriptorSupplier("ManageTraffic"))
               .build();
         }
       }
     }
-    return getChangeLightStateMethod;
-  }
-
-  private static volatile io.grpc.MethodDescriptor<traffic.Traffic.Empty,
-      traffic.Traffic.TrafficLightState> getGetCurrentStateMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "GetCurrentState",
-      requestType = traffic.Traffic.Empty.class,
-      responseType = traffic.Traffic.TrafficLightState.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<traffic.Traffic.Empty,
-      traffic.Traffic.TrafficLightState> getGetCurrentStateMethod() {
-    io.grpc.MethodDescriptor<traffic.Traffic.Empty, traffic.Traffic.TrafficLightState> getGetCurrentStateMethod;
-    if ((getGetCurrentStateMethod = TrafficLightServiceGrpc.getGetCurrentStateMethod) == null) {
-      synchronized (TrafficLightServiceGrpc.class) {
-        if ((getGetCurrentStateMethod = TrafficLightServiceGrpc.getGetCurrentStateMethod) == null) {
-          TrafficLightServiceGrpc.getGetCurrentStateMethod = getGetCurrentStateMethod =
-              io.grpc.MethodDescriptor.<traffic.Traffic.Empty, traffic.Traffic.TrafficLightState>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "GetCurrentState"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  traffic.Traffic.Empty.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  traffic.Traffic.TrafficLightState.getDefaultInstance()))
-              .setSchemaDescriptor(new TrafficLightServiceMethodDescriptorSupplier("GetCurrentState"))
-              .build();
-        }
-      }
-    }
-    return getGetCurrentStateMethod;
+    return getManageTrafficMethod;
   }
 
   /**
@@ -125,38 +91,22 @@ public final class TrafficLightServiceGrpc {
   }
 
   /**
-   * <pre>
-   * The greeter service definition.
-   * </pre>
    */
   public interface AsyncService {
 
     /**
      * <pre>
-     * Sends a command to change the traffic light state
+     * Bidirectional streaming RPC for continuous traffic light state management
      * </pre>
      */
-    default void changeLightState(traffic.Traffic.ChangeLightRequest request,
-        io.grpc.stub.StreamObserver<traffic.Traffic.ChangeLightResponse> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getChangeLightStateMethod(), responseObserver);
-    }
-
-    /**
-     * <pre>
-     * Retrieves the current state of the traffic light
-     * </pre>
-     */
-    default void getCurrentState(traffic.Traffic.Empty request,
-        io.grpc.stub.StreamObserver<traffic.Traffic.TrafficLightState> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetCurrentStateMethod(), responseObserver);
+    default io.grpc.stub.StreamObserver<traffic.Traffic.TrafficCommand> manageTraffic(
+        io.grpc.stub.StreamObserver<traffic.Traffic.TrafficState> responseObserver) {
+      return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getManageTrafficMethod(), responseObserver);
     }
   }
 
   /**
    * Base class for the server implementation of the service TrafficLightService.
-   * <pre>
-   * The greeter service definition.
-   * </pre>
    */
   public static abstract class TrafficLightServiceImplBase
       implements io.grpc.BindableService, AsyncService {
@@ -168,9 +118,6 @@ public final class TrafficLightServiceGrpc {
 
   /**
    * A stub to allow clients to do asynchronous rpc calls to service TrafficLightService.
-   * <pre>
-   * The greeter service definition.
-   * </pre>
    */
   public static final class TrafficLightServiceStub
       extends io.grpc.stub.AbstractAsyncStub<TrafficLightServiceStub> {
@@ -187,32 +134,18 @@ public final class TrafficLightServiceGrpc {
 
     /**
      * <pre>
-     * Sends a command to change the traffic light state
+     * Bidirectional streaming RPC for continuous traffic light state management
      * </pre>
      */
-    public void changeLightState(traffic.Traffic.ChangeLightRequest request,
-        io.grpc.stub.StreamObserver<traffic.Traffic.ChangeLightResponse> responseObserver) {
-      io.grpc.stub.ClientCalls.asyncUnaryCall(
-          getChannel().newCall(getChangeLightStateMethod(), getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     * <pre>
-     * Retrieves the current state of the traffic light
-     * </pre>
-     */
-    public void getCurrentState(traffic.Traffic.Empty request,
-        io.grpc.stub.StreamObserver<traffic.Traffic.TrafficLightState> responseObserver) {
-      io.grpc.stub.ClientCalls.asyncUnaryCall(
-          getChannel().newCall(getGetCurrentStateMethod(), getCallOptions()), request, responseObserver);
+    public io.grpc.stub.StreamObserver<traffic.Traffic.TrafficCommand> manageTraffic(
+        io.grpc.stub.StreamObserver<traffic.Traffic.TrafficState> responseObserver) {
+      return io.grpc.stub.ClientCalls.asyncBidiStreamingCall(
+          getChannel().newCall(getManageTrafficMethod(), getCallOptions()), responseObserver);
     }
   }
 
   /**
    * A stub to allow clients to do synchronous rpc calls to service TrafficLightService.
-   * <pre>
-   * The greeter service definition.
-   * </pre>
    */
   public static final class TrafficLightServiceBlockingStub
       extends io.grpc.stub.AbstractBlockingStub<TrafficLightServiceBlockingStub> {
@@ -226,33 +159,10 @@ public final class TrafficLightServiceGrpc {
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new TrafficLightServiceBlockingStub(channel, callOptions);
     }
-
-    /**
-     * <pre>
-     * Sends a command to change the traffic light state
-     * </pre>
-     */
-    public traffic.Traffic.ChangeLightResponse changeLightState(traffic.Traffic.ChangeLightRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getChangeLightStateMethod(), getCallOptions(), request);
-    }
-
-    /**
-     * <pre>
-     * Retrieves the current state of the traffic light
-     * </pre>
-     */
-    public traffic.Traffic.TrafficLightState getCurrentState(traffic.Traffic.Empty request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getGetCurrentStateMethod(), getCallOptions(), request);
-    }
   }
 
   /**
    * A stub to allow clients to do ListenableFuture-style rpc calls to service TrafficLightService.
-   * <pre>
-   * The greeter service definition.
-   * </pre>
    */
   public static final class TrafficLightServiceFutureStub
       extends io.grpc.stub.AbstractFutureStub<TrafficLightServiceFutureStub> {
@@ -266,32 +176,9 @@ public final class TrafficLightServiceGrpc {
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new TrafficLightServiceFutureStub(channel, callOptions);
     }
-
-    /**
-     * <pre>
-     * Sends a command to change the traffic light state
-     * </pre>
-     */
-    public com.google.common.util.concurrent.ListenableFuture<traffic.Traffic.ChangeLightResponse> changeLightState(
-        traffic.Traffic.ChangeLightRequest request) {
-      return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getChangeLightStateMethod(), getCallOptions()), request);
-    }
-
-    /**
-     * <pre>
-     * Retrieves the current state of the traffic light
-     * </pre>
-     */
-    public com.google.common.util.concurrent.ListenableFuture<traffic.Traffic.TrafficLightState> getCurrentState(
-        traffic.Traffic.Empty request) {
-      return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getGetCurrentStateMethod(), getCallOptions()), request);
-    }
   }
 
-  private static final int METHODID_CHANGE_LIGHT_STATE = 0;
-  private static final int METHODID_GET_CURRENT_STATE = 1;
+  private static final int METHODID_MANAGE_TRAFFIC = 0;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -310,14 +197,6 @@ public final class TrafficLightServiceGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
-        case METHODID_CHANGE_LIGHT_STATE:
-          serviceImpl.changeLightState((traffic.Traffic.ChangeLightRequest) request,
-              (io.grpc.stub.StreamObserver<traffic.Traffic.ChangeLightResponse>) responseObserver);
-          break;
-        case METHODID_GET_CURRENT_STATE:
-          serviceImpl.getCurrentState((traffic.Traffic.Empty) request,
-              (io.grpc.stub.StreamObserver<traffic.Traffic.TrafficLightState>) responseObserver);
-          break;
         default:
           throw new AssertionError();
       }
@@ -328,6 +207,9 @@ public final class TrafficLightServiceGrpc {
     public io.grpc.stub.StreamObserver<Req> invoke(
         io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
+        case METHODID_MANAGE_TRAFFIC:
+          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.manageTraffic(
+              (io.grpc.stub.StreamObserver<traffic.Traffic.TrafficState>) responseObserver);
         default:
           throw new AssertionError();
       }
@@ -337,19 +219,12 @@ public final class TrafficLightServiceGrpc {
   public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
     return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
         .addMethod(
-          getChangeLightStateMethod(),
-          io.grpc.stub.ServerCalls.asyncUnaryCall(
+          getManageTrafficMethod(),
+          io.grpc.stub.ServerCalls.asyncBidiStreamingCall(
             new MethodHandlers<
-              traffic.Traffic.ChangeLightRequest,
-              traffic.Traffic.ChangeLightResponse>(
-                service, METHODID_CHANGE_LIGHT_STATE)))
-        .addMethod(
-          getGetCurrentStateMethod(),
-          io.grpc.stub.ServerCalls.asyncUnaryCall(
-            new MethodHandlers<
-              traffic.Traffic.Empty,
-              traffic.Traffic.TrafficLightState>(
-                service, METHODID_GET_CURRENT_STATE)))
+              traffic.Traffic.TrafficCommand,
+              traffic.Traffic.TrafficState>(
+                service, METHODID_MANAGE_TRAFFIC)))
         .build();
   }
 
@@ -398,8 +273,7 @@ public final class TrafficLightServiceGrpc {
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new TrafficLightServiceFileDescriptorSupplier())
-              .addMethod(getChangeLightStateMethod())
-              .addMethod(getGetCurrentStateMethod())
+              .addMethod(getManageTrafficMethod())
               .build();
         }
       }
