@@ -68,6 +68,7 @@
                                 </outputTarget>
                                 <outputTarget>
                                     <type>grpc-java</type>
+                                    <!--suppress UnresolvedMavenProperty -->
                                     <pluginArtifact>io.grpc:protoc-gen-grpc-java:1.61.1:exe:${os.detected.classifier}</pluginArtifact>
                                     <outputDirectory>src/main/java</outputDirectory>
                                 </outputTarget>
