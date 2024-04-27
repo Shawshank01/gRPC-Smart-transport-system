@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package vehicle_telemetry;
+
+// The service definition for streaming telemetry data from vehicles to the server.
+service VehicleTelemetryService {
+  // Client streams telemetry data to the server
+  rpc StreamTelemetry(stream TelemetryData) returns (TelemetryResponse);
+}
+
+// The message format for telemetry data from a vehicle.
+message TelemetryData {
+  string vehicleId = 1;
+  double latitude = 2;
+  double longitude = 3;
+  float speed = 4; // speed of the vehicle in kilometers per hour
+  float engineTemp = 5; // engine temperature in degrees Celsius
+  float fuelLevel = 6; // fuel level as a percentage
+  int64 timestamp = 7; // timestamp of the telemetry data
+}
+
+// The server's response after processing the telemetry stream.
+message TelemetryResponse {
+  bool success = 1; // whether the stream was successfully processed
+  string message = 2; // additional message or feedback
+}
