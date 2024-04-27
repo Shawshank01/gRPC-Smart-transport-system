@@ -65,7 +65,7 @@ public class TelemetryClient {
                 .build();
         try {
             TelemetryClient client = new TelemetryClient(channel);
-            client.sendTelemetryData("vehicle123");
+            client.sendTelemetryData("Toyota");
         } finally {
             channel.shutdownNow().awaitTermination(5, TimeUnit.SECONDS);
         }
