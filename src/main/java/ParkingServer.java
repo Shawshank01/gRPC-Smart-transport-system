@@ -6,7 +6,6 @@ import parking.Parking.CheckAvailabilityRequest;
 import parking.Parking.CheckAvailabilityResponse;
 import parking.Parking.ReserveSpotRequest;
 import parking.Parking.ReserveSpotResponse;
-
 import java.io.IOException;
 
 public class ParkingServer {

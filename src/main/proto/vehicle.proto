@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package vehicle;
+
+service VehicleService {
+  // Server streams event notifications to the vehicle
+  rpc StreamEvents(EventRequest) returns (stream EventNotification);
+}
+
+// Request for subscribing to event notifications
+message EventRequest {
+  string vehicleId = 1;  // Identifier for the vehicle
+}
+
+// Event notifications being sent to the vehicle
+message EventNotification {
+  string vehicleId = 1;  // Identifier for the vehicle
+  string message = 2;    // Message or description of the event
+  int64 timestamp = 3;   // Time when the event was generated
+}
