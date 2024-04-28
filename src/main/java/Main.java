@@ -1,8 +1,11 @@
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
@@ -40,6 +43,7 @@ public class Main {
                         interactWithEventNotificationService();
                         break;
                     case "0":
+                        stopServers();  // Stop all servers
                         return;
                     default:
                         System.out.println("Invalid choice. Please enter a number between 0 and 4.");
@@ -47,40 +51,63 @@ public class Main {
                 }
             }
         } finally {
-            System.out.println("Shutting down...");
+            stopServers();  // Ensure all servers are stopped even if an exception occurs
         }
     }
 
+    // List to keep track of server threads for graceful shutdown
+    private static final List<Thread> serverThreads = new ArrayList<>();
+
     private static void startServers() {
-        // Start each server in its own thread
-        new Thread(() -> {
+        serverThreads.add(new Thread(() -> {
             try {
                 TrafficLightServer.main(null);
             } catch (IOException | InterruptedException e) {
                 throw new RuntimeException(e);
             }
-        }).start();
-        new Thread(() -> {
+        }));
+        serverThreads.add(new Thread(() -> {
             try {
                 ParkingServer.main(null);
             } catch (IOException | InterruptedException e) {
                 throw new RuntimeException(e);
             }
-        }).start();
-        new Thread(() -> {
+        }));
+        serverThreads.add(new Thread(() -> {
             try {
                 VehicleServer.main(null);
             } catch (IOException | InterruptedException e) {
                 throw new RuntimeException(e);
             }
-        }).start();
-        new Thread(() -> {
+        }));
+        serverThreads.add(new Thread(() -> {
             try {
                 TelemetryServer.main(null);
             } catch (IOException | InterruptedException e) {
                 throw new RuntimeException(e);
             }
-        }).start();
+        }));
+
+        for (Thread thread : serverThreads) {
+            thread.start();
+        }
+    }
+
+    private static void stopServers() {
+        // Signal all server threads to stop
+        for (Thread serverThread : serverThreads) {
+            serverThread.interrupt();
+        }
+
+        // Wait for all server threads to finish
+        for (Thread serverThread : serverThreads) {
+            try {
+                serverThread.join();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();  // Properly handle InterruptedException
+                System.out.println("Failed to stop server thread gracefully: " + e.getMessage());
+            }
+        }
     }
 
     private static void interactWithTrafficLightService(BufferedReader br) throws Exception {
