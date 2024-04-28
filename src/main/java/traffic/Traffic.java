@@ -39,7 +39,7 @@ public final class Traffic {
   }
   /**
    * <pre>
-   * Command to change traffic light state
+   * Define the request message for traffic command
    * </pre>
    *
    * Protobuf type {@code traffic.TrafficCommand}
@@ -127,29 +127,49 @@ public final class Traffic {
     }
 
     /**
+     * <pre>
+     * Enum for command types including the END_STREAM command
+     * </pre>
+     *
      * Protobuf enum {@code traffic.TrafficCommand.Command}
      */
     public enum Command
         implements com.google.protobuf.ProtocolMessageEnum {
       /**
-       * <code>TURN_RED = 0;</code>
+       * <code>TURN_GREEN = 0;</code>
        */
-      TURN_RED(0),
+      TURN_GREEN(0),
       /**
-       * <code>TURN_GREEN = 1;</code>
+       * <code>TURN_RED = 1;</code>
        */
-      TURN_GREEN(1),
+      TURN_RED(1),
+      /**
+       * <pre>
+       * Added the END_STREAM command
+       * </pre>
+       *
+       * <code>END_STREAM = 2;</code>
+       */
+      END_STREAM(2),
       UNRECOGNIZED(-1),
       ;
 
       /**
-       * <code>TURN_RED = 0;</code>
+       * <code>TURN_GREEN = 0;</code>
        */
-      public static final int TURN_RED_VALUE = 0;
+      public static final int TURN_GREEN_VALUE = 0;
       /**
-       * <code>TURN_GREEN = 1;</code>
+       * <code>TURN_RED = 1;</code>
        */
-      public static final int TURN_GREEN_VALUE = 1;
+      public static final int TURN_RED_VALUE = 1;
+      /**
+       * <pre>
+       * Added the END_STREAM command
+       * </pre>
+       *
+       * <code>END_STREAM = 2;</code>
+       */
+      public static final int END_STREAM_VALUE = 2;
 
 
       public final int getNumber() {
@@ -170,8 +190,9 @@ public final class Traffic {
 
       public static Command forNumber(int value) {
         switch (value) {
-          case 0: return TURN_RED;
-          case 1: return TURN_GREEN;
+          case 0: return TURN_GREEN;
+          case 1: return TURN_RED;
+          case 2: return END_STREAM;
           default: return null;
         }
       }
@@ -292,7 +313,7 @@ public final class Traffic {
       if (!getIntersectionIdBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, intersectionId_);
       }
-      if (command_ != traffic.Traffic.TrafficCommand.Command.TURN_RED.getNumber()) {
+      if (command_ != traffic.Traffic.TrafficCommand.Command.TURN_GREEN.getNumber()) {
         output.writeEnum(2, command_);
       }
       unknownFields.writeTo(output);
@@ -307,7 +328,7 @@ public final class Traffic {
       if (!getIntersectionIdBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, intersectionId_);
       }
-      if (command_ != traffic.Traffic.TrafficCommand.Command.TURN_RED.getNumber()) {
+      if (command_ != traffic.Traffic.TrafficCommand.Command.TURN_GREEN.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(2, command_);
       }
@@ -442,7 +463,7 @@ public final class Traffic {
     }
     /**
      * <pre>
-     * Command to change traffic light state
+     * Define the request message for traffic command
      * </pre>
      *
      * Protobuf type {@code traffic.TrafficCommand}
@@ -789,7 +810,7 @@ public final class Traffic {
   }
   /**
    * <pre>
-   * Current state of the traffic light
+   * Define the response message for traffic state
    * </pre>
    *
    * Protobuf type {@code traffic.TrafficState}
@@ -877,29 +898,49 @@ public final class Traffic {
     }
 
     /**
+     * <pre>
+     * Enum for state types including an UNKNOWN state
+     * </pre>
+     *
      * Protobuf enum {@code traffic.TrafficState.State}
      */
     public enum State
         implements com.google.protobuf.ProtocolMessageEnum {
       /**
-       * <code>RED = 0;</code>
+       * <code>GREEN = 0;</code>
        */
-      RED(0),
+      GREEN(0),
       /**
-       * <code>GREEN = 1;</code>
+       * <code>RED = 1;</code>
        */
-      GREEN(1),
+      RED(1),
+      /**
+       * <pre>
+       * Added the UNKNOWN state for undefined or error states
+       * </pre>
+       *
+       * <code>UNKNOWN = 2;</code>
+       */
+      UNKNOWN(2),
       UNRECOGNIZED(-1),
       ;
 
       /**
-       * <code>RED = 0;</code>
+       * <code>GREEN = 0;</code>
        */
-      public static final int RED_VALUE = 0;
+      public static final int GREEN_VALUE = 0;
       /**
-       * <code>GREEN = 1;</code>
+       * <code>RED = 1;</code>
        */
-      public static final int GREEN_VALUE = 1;
+      public static final int RED_VALUE = 1;
+      /**
+       * <pre>
+       * Added the UNKNOWN state for undefined or error states
+       * </pre>
+       *
+       * <code>UNKNOWN = 2;</code>
+       */
+      public static final int UNKNOWN_VALUE = 2;
 
 
       public final int getNumber() {
@@ -920,8 +961,9 @@ public final class Traffic {
 
       public static State forNumber(int value) {
         switch (value) {
-          case 0: return RED;
-          case 1: return GREEN;
+          case 0: return GREEN;
+          case 1: return RED;
+          case 2: return UNKNOWN;
           default: return null;
         }
       }
@@ -1042,7 +1084,7 @@ public final class Traffic {
       if (!getIntersectionIdBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, intersectionId_);
       }
-      if (currentState_ != traffic.Traffic.TrafficState.State.RED.getNumber()) {
+      if (currentState_ != traffic.Traffic.TrafficState.State.GREEN.getNumber()) {
         output.writeEnum(2, currentState_);
       }
       unknownFields.writeTo(output);
@@ -1057,7 +1099,7 @@ public final class Traffic {
       if (!getIntersectionIdBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, intersectionId_);
       }
-      if (currentState_ != traffic.Traffic.TrafficState.State.RED.getNumber()) {
+      if (currentState_ != traffic.Traffic.TrafficState.State.GREEN.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(2, currentState_);
       }
@@ -1192,7 +1234,7 @@ public final class Traffic {
     }
     /**
      * <pre>
-     * Current state of the traffic light
+     * Define the response message for traffic state
      * </pre>
      *
      * Protobuf type {@code traffic.TrafficState}
@@ -1533,16 +1575,17 @@ public final class Traffic {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\rtraffic.proto\022\007traffic\"\203\001\n\016TrafficComm" +
+      "\n\rtraffic.proto\022\007traffic\"\223\001\n\016TrafficComm" +
       "and\022\026\n\016intersectionId\030\001 \001(\t\0220\n\007command\030\002" +
-      " \001(\0162\037.traffic.TrafficCommand.Command\"\'\n" +
-      "\007Command\022\014\n\010TURN_RED\020\000\022\016\n\nTURN_GREEN\020\001\"v" +
-      "\n\014TrafficState\022\026\n\016intersectionId\030\001 \001(\t\0221" +
-      "\n\014currentState\030\002 \001(\0162\033.traffic.TrafficSt" +
-      "ate.State\"\033\n\005State\022\007\n\003RED\020\000\022\t\n\005GREEN\020\0012Z" +
-      "\n\023TrafficLightService\022C\n\rManageTraffic\022\027" +
-      ".traffic.TrafficCommand\032\025.traffic.Traffi" +
-      "cState(\0010\001b\006proto3"
+      " \001(\0162\037.traffic.TrafficCommand.Command\"7\n" +
+      "\007Command\022\016\n\nTURN_GREEN\020\000\022\014\n\010TURN_RED\020\001\022\016" +
+      "\n\nEND_STREAM\020\002\"\203\001\n\014TrafficState\022\026\n\016inter" +
+      "sectionId\030\001 \001(\t\0221\n\014currentState\030\002 \001(\0162\033." +
+      "traffic.TrafficState.State\"(\n\005State\022\t\n\005G" +
+      "REEN\020\000\022\007\n\003RED\020\001\022\013\n\007UNKNOWN\020\0022Z\n\023TrafficL" +
+      "ightService\022C\n\rManageTraffic\022\027.traffic.T" +
+      "rafficCommand\032\025.traffic.TrafficState(\0010\001" +
+      "b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

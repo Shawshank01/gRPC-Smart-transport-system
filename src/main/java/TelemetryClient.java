@@ -21,6 +21,12 @@ public class TelemetryClient {
         asyncStub = VehicleTelemetryServiceGrpc.newStub(channel);
     }
 
+    public static void interactWithVehicleTelemetryService(ManagedChannel channel) throws InterruptedException {
+        TelemetryClient client = new TelemetryClient(channel);
+        // Assuming the vehicle ID might be predefined or fetched from some configuration.
+        client.sendTelemetryData("Toyota"); // Or prompt user for vehicleId if dynamic input is preferred.
+    }
+
     /**
      * Sends telemetry data to the server in a streaming fashion.
      *

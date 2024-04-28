@@ -3,6 +3,9 @@ package traffic;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 
 /**
+ * <pre>
+ * Define a service with RPC methods
+ * </pre>
  */
 @javax.annotation.Generated(
     value = "by gRPC proto compiler (version 1.61.1)",
@@ -91,12 +94,15 @@ public final class TrafficLightServiceGrpc {
   }
 
   /**
+   * <pre>
+   * Define a service with RPC methods
+   * </pre>
    */
   public interface AsyncService {
 
     /**
      * <pre>
-     * Bidirectional streaming RPC for continuous traffic light state management
+     * Define a bidirectional streaming RPC
      * </pre>
      */
     default io.grpc.stub.StreamObserver<traffic.Traffic.TrafficCommand> manageTraffic(
@@ -107,6 +113,9 @@ public final class TrafficLightServiceGrpc {
 
   /**
    * Base class for the server implementation of the service TrafficLightService.
+   * <pre>
+   * Define a service with RPC methods
+   * </pre>
    */
   public static abstract class TrafficLightServiceImplBase
       implements io.grpc.BindableService, AsyncService {
@@ -118,6 +127,9 @@ public final class TrafficLightServiceGrpc {
 
   /**
    * A stub to allow clients to do asynchronous rpc calls to service TrafficLightService.
+   * <pre>
+   * Define a service with RPC methods
+   * </pre>
    */
   public static final class TrafficLightServiceStub
       extends io.grpc.stub.AbstractAsyncStub<TrafficLightServiceStub> {
@@ -134,7 +146,7 @@ public final class TrafficLightServiceGrpc {
 
     /**
      * <pre>
-     * Bidirectional streaming RPC for continuous traffic light state management
+     * Define a bidirectional streaming RPC
      * </pre>
      */
     public io.grpc.stub.StreamObserver<traffic.Traffic.TrafficCommand> manageTraffic(
@@ -146,6 +158,9 @@ public final class TrafficLightServiceGrpc {
 
   /**
    * A stub to allow clients to do synchronous rpc calls to service TrafficLightService.
+   * <pre>
+   * Define a service with RPC methods
+   * </pre>
    */
   public static final class TrafficLightServiceBlockingStub
       extends io.grpc.stub.AbstractBlockingStub<TrafficLightServiceBlockingStub> {
@@ -163,6 +178,9 @@ public final class TrafficLightServiceGrpc {
 
   /**
    * A stub to allow clients to do ListenableFuture-style rpc calls to service TrafficLightService.
+   * <pre>
+   * Define a service with RPC methods
+   * </pre>
    */
   public static final class TrafficLightServiceFutureStub
       extends io.grpc.stub.AbstractFutureStub<TrafficLightServiceFutureStub> {

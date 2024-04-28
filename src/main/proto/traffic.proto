@@ -2,27 +2,34 @@ syntax = "proto3";
 
 package traffic;
 
+// Define a service with RPC methods
 service TrafficLightService {
-  // Bidirectional streaming RPC for continuous traffic light state management
+  // Define a bidirectional streaming RPC
   rpc ManageTraffic(stream TrafficCommand) returns (stream TrafficState);
 }
 
-// Command to change traffic light state
+// Define the request message for traffic command
 message TrafficCommand {
   string intersectionId = 1;
-  enum Command {
-    TURN_RED = 0;
-    TURN_GREEN = 1;
-  }
   Command command = 2;
+
+  // Enum for command types including the END_STREAM command
+  enum Command {
+    TURN_GREEN = 0;
+    TURN_RED = 1;
+    END_STREAM = 2; // Added the END_STREAM command
+  }
 }
 
-// Current state of the traffic light
+// Define the response message for traffic state
 message TrafficState {
   string intersectionId = 1;
-  enum State {
-    RED = 0;
-    GREEN = 1;
-  }
   State currentState = 2;
+
+  // Enum for state types including an UNKNOWN state
+  enum State {
+    GREEN = 0;
+    RED = 1;
+    UNKNOWN = 2; // Added the UNKNOWN state for undefined or error states
+  }
 }

@@ -21,6 +21,14 @@ public class VehicleClient {
         asyncStub = VehicleServiceGrpc.newStub(channel);
     }
 
+    public static void interactWithEventNotificationService(ManagedChannel channel) throws InterruptedException {
+        VehicleClient client = new VehicleClient(channel);
+        System.out.println("Subscribing to vehicle events...");
+        client.subscribeToEvents("Toyota"); // Example vehicle ID, could be dynamic based on user input
+        // Implement a wait strategy as necessary, e.g., await on a latch if needed
+        Thread.sleep(15000); // Example wait, adjust as per the actual flow needed
+    }
+
     /**
      * Subscribes to event notifications for a specific vehicle.
      *
@@ -65,7 +73,7 @@ public class VehicleClient {
         try {
             // Creating the client and subscribing to events for "vehicle123".
             VehicleClient client = new VehicleClient(channel);
-            client.subscribeToEvents("vehicle123");
+            client.subscribeToEvents("Toyota");
             // Wait for the server to finish transmitting events.
             Thread.sleep(15000);
         } finally {

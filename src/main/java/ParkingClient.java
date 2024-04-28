@@ -6,6 +6,10 @@ import parking.Parking.CheckAvailabilityResponse;
 import parking.Parking.ReserveSpotRequest;
 import parking.Parking.ReserveSpotResponse;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class ParkingClient {
     // Stub that allows us to create connections for server calls.
     private final ParkingServiceGrpc.ParkingServiceBlockingStub blockingStub;
@@ -18,6 +22,23 @@ public class ParkingClient {
     public ParkingClient(ManagedChannel channel) {
         // Initialize the stub on the provided channel.
         blockingStub = ParkingServiceGrpc.newBlockingStub(channel);
+    }
+
+    public static void interactWithParkingService(ManagedChannel channel) throws IOException {
+        ParkingClient client = new ParkingClient(channel);
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.println("Enter location ID to check availability:");
+        String locationId = br.readLine();
+        client.checkAvailability(locationId);
+
+        System.out.println("Do you want to reserve a spot at this location? (yes/no)");
+        String answer = br.readLine().trim().toLowerCase();
+        if ("yes".equals(answer)) {
+            System.out.println("Enter your user ID:");
+            String userId = br.readLine();
+            client.reserveSpot(locationId, userId);
+        }
     }
 
     /**
