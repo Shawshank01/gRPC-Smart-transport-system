@@ -11,9 +11,9 @@ public class Main {
     private static final int PARKING_PORT = 50052;
     private static final int VEHICLE_PORT = 50053;
     private static final int TELEMETRY_PORT = 50054;
-    private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
     public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         startServers(); // Start all servers
 
         try {
@@ -28,7 +28,7 @@ public class Main {
                 String choice = br.readLine();
                 switch (choice) {
                     case "1":
-                        interactWithTrafficLightService();
+                        interactWithTrafficLightService(br);
                         break;
                     case "2":
                         interactWithParkingService();
@@ -83,11 +83,11 @@ public class Main {
         }).start();
     }
 
-    private static void interactWithTrafficLightService() throws Exception {
+    private static void interactWithTrafficLightService(BufferedReader br) throws Exception {
         ManagedChannel channel = ManagedChannelBuilder.forAddress(SERVER_ADDRESS, TRAFFIC_LIGHT_PORT)
                 .usePlaintext()
                 .build();
-        TrafficLightClient.interactWithTrafficLightService(channel);
+        TrafficLightClient.interactWithTrafficLightService(channel, br);
         channel.shutdownNow().awaitTermination(5, TimeUnit.SECONDS);
     }
 
