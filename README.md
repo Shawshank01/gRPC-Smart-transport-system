@@ -1,6 +1,5 @@
 # Smart Transport System: gRPC-based Distributed Services Report
 
-This is the CA of Distributed Systems (HDCSDEV_INT)  
 For x86 platform only
 
 ## Domain Description
