@@ -1,6 +1,6 @@
-# Smart Transport System: gRPC-based Distributed Services Report
+# Smart Transport System: gRPC-based Distributed Services
 
-For x86 platform only
+Test on x86 platform only
 
 ## Domain Description
 
@@ -121,15 +121,3 @@ is a detailed breakdown of its functionalities and operations:
 - **Error Handling and Logging**: Throughout its execution, the `Main` module handles exceptions and errors gracefully,
   providing logs for debugging and maintenance purposes. This ensures that any issues can be traced and rectified
   promptly.
-
-### Conclusion
-
-The Smart Transport System utilizing gRPC exemplifies a modern approach to handling distributed systems in traffic and
-vehicle management. Through the efficient use of different RPC types, it promises scalability, real-time operations, and
-high reliability, crucial for the demanding dynamics of urban transport management.
-
-The Main module effectively demonstrates the integration and management capabilities within a distributed system
-architecture using gRPC. By providing an interface for interaction and ensuring robust management of service life
-cycles, it plays a pivotal role in the overall functionality and reliability of the Smart Transport System. This setup
-is ideal for environments that require high availability, scalability, and effective management of transport-related
-services.
