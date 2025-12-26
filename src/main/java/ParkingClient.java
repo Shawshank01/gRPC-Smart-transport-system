@@ -30,13 +30,23 @@ public class ParkingClient {
 
         System.out.println("Enter location ID to check availability:");
         String locationId = br.readLine();
+        if (locationId == null) {
+            return;
+        }
         client.checkAvailability(locationId);
 
         System.out.println("Do you want to reserve a spot at this location? (yes/no)");
-        String answer = br.readLine().trim().toLowerCase();
-        if ("yes".equals(answer)) {
+        String answer = br.readLine();
+        if (answer == null) {
+            return;
+        }
+        String normalized = answer.trim().toLowerCase();
+        if ("yes".equals(normalized)) {
             System.out.println("Enter your user ID:");
             String userId = br.readLine();
+            if (userId == null) {
+                return;
+            }
             client.reserveSpot(locationId, userId);
         }
     }
@@ -60,7 +70,8 @@ public class ParkingClient {
     /**
      * Reserve a parking spot at a specific location for a user.
      *
-     * @param locationId the identifier of the location where a spot is to be reserved.
+     * @param locationId the identifier of the location where a spot is to be
+     *                   reserved.
      * @param userId     the identifier of the user reserving the spot.
      */
     public void reserveSpot(String locationId, String userId) {
@@ -83,7 +94,7 @@ public class ParkingClient {
     public static void main(String[] args) {
         // Create a new channel to connect to the server at specified address and port.
         ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50052)
-                .usePlaintext()  // Insecure channel, not for production use.
+                .usePlaintext() // Insecure channel, not for production use.
                 .build();
         try {
             // Create a new client using the channel.

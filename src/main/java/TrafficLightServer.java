@@ -6,11 +6,12 @@ import traffic.Traffic.TrafficCommand;
 import traffic.Traffic.TrafficState;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 public class TrafficLightServer {
     private Server server;
 
-    private void start() throws IOException {
+    void start() throws IOException {
         int port = 50051;
         server = ServerBuilder.forPort(port)
                 .addService(new TrafficLightServiceImpl())
@@ -24,9 +25,17 @@ public class TrafficLightServer {
         }));
     }
 
-    private void stop() {
+    void stop() {
         if (server != null) {
             server.shutdown();
+            try {
+                if (!server.awaitTermination(5, TimeUnit.SECONDS)) {
+                    server.shutdownNow();
+                }
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                server.shutdownNow();
+            }
         }
     }
 

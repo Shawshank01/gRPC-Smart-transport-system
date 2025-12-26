@@ -4,8 +4,6 @@ import io.grpc.ManagedChannelBuilder;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
@@ -14,6 +12,11 @@ public class Main {
     private static final int PARKING_PORT = 50052;
     private static final int VEHICLE_PORT = 50053;
     private static final int TELEMETRY_PORT = 50054;
+
+    private static TrafficLightServer trafficLightServer;
+    private static ParkingServer parkingServer;
+    private static VehicleServer vehicleServer;
+    private static TelemetryServer telemetryServer;
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -29,6 +32,10 @@ public class Main {
                 System.out.println("0. Exit");
 
                 String choice = br.readLine();
+                if (choice == null) {
+                    System.out.println("Input closed. Exiting.");
+                    return;
+                }
                 switch (choice) {
                     case "1":
                         interactWithTrafficLightService(br);
@@ -43,7 +50,6 @@ public class Main {
                         interactWithEventNotificationService();
                         break;
                     case "0":
-                        stopServers();  // Stop all servers
                         return;
                     default:
                         System.out.println("Invalid choice. Please enter a number between 0 and 4.");
@@ -51,62 +57,39 @@ public class Main {
                 }
             }
         } finally {
-            stopServers();  // Ensure all servers are stopped even if an exception occurs
+            stopServers(); // Ensure all servers are stopped even if an exception occurs
         }
     }
 
-    // List to keep track of server threads for graceful shutdown
-    private static final List<Thread> serverThreads = new ArrayList<>();
+    private static void startServers() throws IOException {
+        trafficLightServer = new TrafficLightServer();
+        parkingServer = new ParkingServer();
+        vehicleServer = new VehicleServer();
+        telemetryServer = new TelemetryServer();
 
-    private static void startServers() {
-        serverThreads.add(new Thread(() -> {
-            try {
-                TrafficLightServer.main(null);
-            } catch (IOException | InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }));
-        serverThreads.add(new Thread(() -> {
-            try {
-                ParkingServer.main(null);
-            } catch (IOException | InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }));
-        serverThreads.add(new Thread(() -> {
-            try {
-                VehicleServer.main(null);
-            } catch (IOException | InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }));
-        serverThreads.add(new Thread(() -> {
-            try {
-                TelemetryServer.main(null);
-            } catch (IOException | InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }));
-
-        for (Thread thread : serverThreads) {
-            thread.start();
+        try {
+            trafficLightServer.start();
+            parkingServer.start();
+            vehicleServer.start();
+            telemetryServer.start();
+        } catch (IOException e) {
+            stopServers();
+            throw e;
         }
     }
 
     private static void stopServers() {
-        // Signal all server threads to stop
-        for (Thread serverThread : serverThreads) {
-            serverThread.interrupt();
+        if (telemetryServer != null) {
+            telemetryServer.stop();
         }
-
-        // Wait for all server threads to finish
-        for (Thread serverThread : serverThreads) {
-            try {
-                serverThread.join();
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();  // Properly handle InterruptedException
-                System.out.println("Failed to stop server thread gracefully: " + e.getMessage());
-            }
+        if (vehicleServer != null) {
+            vehicleServer.stop();
+        }
+        if (parkingServer != null) {
+            parkingServer.stop();
+        }
+        if (trafficLightServer != null) {
+            trafficLightServer.stop();
         }
     }
 

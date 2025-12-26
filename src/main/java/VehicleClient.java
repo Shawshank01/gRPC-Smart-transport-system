@@ -68,7 +68,7 @@ public class VehicleClient {
     public static void main(String[] args) throws Exception {
         // Establishing connection to the server.
         ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50053)
-                .usePlaintext()  // Note: Insecure for production use, only suitable for development.
+                .usePlaintext() // Note: Insecure for production use, only suitable for development.
                 .build();
         try {
             // Creating the client and subscribing to events for "vehicle123".

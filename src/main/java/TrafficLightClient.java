@@ -59,10 +59,10 @@ public class TrafficLightClient {
      * @throws IOException          if an input/output error occurs.
      * @throws InterruptedException if interrupted during wait.
      */
-    public static void interactWithTrafficLightService(ManagedChannel channel, BufferedReader br) throws IOException, InterruptedException {
+    public static void interactWithTrafficLightService(ManagedChannel channel, BufferedReader br)
+            throws IOException, InterruptedException {
         TrafficLightClient client = new TrafficLightClient(channel);
         client.manageTraffic(br);
-        channel.shutdownNow().awaitTermination(5, TimeUnit.SECONDS);
     }
 
     /**
@@ -77,7 +77,8 @@ public class TrafficLightClient {
         StreamObserver<TrafficCommand> requestObserver = asyncStub.manageTraffic(new StreamObserver<TrafficState>() {
             @Override
             public void onNext(TrafficState state) {
-                System.out.println("Traffic light at " + state.getIntersectionId() + " is now " + state.getCurrentState());
+                System.out.println(
+                        "Traffic light at " + state.getIntersectionId() + " is now " + state.getCurrentState());
             }
 
             @Override
@@ -96,9 +97,13 @@ public class TrafficLightClient {
         try {
             System.out.println("Enter commands ('TURN_GREEN' or 'TURN_RED'), type 'q' to return:");
             String line;
-            while (!(line = br.readLine()).equals("q")) {
+            while ((line = br.readLine()) != null) {
+                String trimmed = line.trim();
+                if ("q".equalsIgnoreCase(trimmed)) {
+                    break;
+                }
                 try {
-                    TrafficCommand.Command command = TrafficCommand.Command.valueOf(line.trim().toUpperCase());
+                    TrafficCommand.Command command = TrafficCommand.Command.valueOf(trimmed.toUpperCase());
                     requestObserver.onNext(TrafficCommand.newBuilder()
                             .setIntersectionId("Station Road")
                             .setCommand(command)
@@ -107,9 +112,9 @@ public class TrafficLightClient {
                     System.err.println("Invalid command. Please type 'TURN_GREEN' or 'TURN_RED'.");
                 }
             }
-            requestObserver.onCompleted();  // Notify server to complete the stream
+            requestObserver.onCompleted(); // Notify server to complete the stream
         } finally {
-            finishLatch.await(1, TimeUnit.MINUTES);  // Wait for the server to confirm the stream is closed
+            finishLatch.await(1, TimeUnit.MINUTES); // Wait for the server to confirm the stream is closed
         }
     }
 }
