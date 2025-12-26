@@ -1,6 +1,5 @@
 # Smart Transport System: gRPC-based Distributed Services
-
-Test on x86 platform only
+Note: Tested on **x86** platform only
 
 ## Domain Description
 
@@ -10,7 +9,7 @@ management, parking availability, vehicle telemetry, and event notification serv
 designed to communicate effectively over a network, ensuring real-time data exchange and control.
 
 Include Parking for simple RPC,  
-Vehicle for server-side streaming RPC,  
+Vehicle (event notifications) for server-side streaming RPC,  
 Telemetry for client-side streaming RPC,  
 Traffic light for bidirectional streaming RPC.
 
@@ -75,9 +74,8 @@ conditions.
 
 ## Service Implementations
 
-Each service is implemented using gRPC's robust system which allows for real-time, bi-directional streaming, secure, and
-efficient communication between clients and servers. Implementations include server setup, stream handling, and
-client-server interactions ensuring data integrity and error handling.
+Each service is implemented using gRPC for basic request and streaming handling. The implementations focus on
+demo-level behaviour (logging, simple responses, and in-memory state for parking).
 
 ## Naming Services
 
@@ -86,17 +84,15 @@ Services are named according to their functionality:
 - `TrafficLightService`
 - `ParkingService`
 - `VehicleTelemetryService`
-- `EventNotificationService`
+- `VehicleService` (streams event notifications)
 
 These names are intuitive, reflecting the operations they handle and ensuring that they are easily recognizable within
 the system architecture.
 
 ## Remote Error Handling & Advanced Features
 
-Error handling is managed through gRPC's built-in mechanisms. Each service implements error handling in its stream
-observers (`onError` method), ensuring any issues like network failures or data inconsistencies are logged and managed
-properly. Advanced features include context passing for maintaining state and metadata in requests, deadlines, and
-timeout management for calls.
+Error handling is basic and primarily logs issues in streaming observers. The demo does not configure deadlines,
+metadata, or other advanced gRPC features.
 
 ## Client - Command Prompts
 
@@ -107,16 +103,14 @@ the startup of all service servers, managing user interactions, and cleanly shut
 is a detailed breakdown of its functionalities and operations:
 
 - **Server Initialization**: `Main` initializes all the service servers including Traffic Light, Parking, Vehicle
-  Telemetry, and Event Notification. Each server is started in its own thread, ensuring they operate concurrently
-  without blocking each other or the main application flow.
+  Telemetry, and Event Notification. Servers are started sequentially in-process; gRPC manages its own internal threads.
 
 - **Service Interaction Management**: It provides a command-line interface that allows administrators or users to
   interact with different services by selecting appropriate options. This is crucial for demonstrating the system's
   capabilities in real-time and for testing purposes.
 
-- **Graceful Shutdown**: When a user decides to exit the application (by entering "0"), `Main` ensures a graceful
-  shutdown of all servers and the main application itself. It handles the interruption and closure of server threads,
-  ensuring there are no resource leaks or abrupt terminations.
+- **Graceful Shutdown**: When a user decides to exit the application (by entering "0"), `Main` stops each server and
+  lets gRPC shut down cleanly without thread interruption.
 
 - **Error Handling and Logging**: Throughout its execution, the `Main` module handles exceptions and errors gracefully,
   providing logs for debugging and maintenance purposes. This ensures that any issues can be traced and rectified
